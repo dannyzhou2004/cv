@@ -39,6 +39,8 @@ const zhName = person.nameZh?.trim() ?? '';
 const displayName = resume.lang === 'zh' ? zhName || person.name : person.name;
 const altName = displayName === person.name ? zhName : person.name;
 const year = new Date().getFullYear();
+/** Build date = last published revision; kept subtle in the footer. */
+const updated = new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Berlin' }).format(new Date());
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -145,7 +147,12 @@ const jsonLd = {
     <footer class="site-footer">
       <div class="shell footer-inner">
         <p>{ui.footer}</p>
-        <p>© {year} {displayName}</p>
+        <div class="footer-meta">
+          <p>© {year} {displayName}</p>
+          <p class="footer-updated">
+            <time datetime={updated}>{ui.labels.updated} {updated}</time>
+          </p>
+        </div>
       </div>
     </footer>
 

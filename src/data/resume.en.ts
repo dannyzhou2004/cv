@@ -38,6 +38,7 @@ export const en: Resume = {
       pauseMusic: 'Pause background music',
       soundHint: 'Click for sound',
       moreProjects: 'More projects on GitHub',
+      updated: 'Last updated',
       switchLanguage: 'Switch language',
       copyEmail: 'Copy email address',
       copied: 'Copied',
@@ -203,16 +204,16 @@ export const en: Resume = {
     },
   ],
   coursework: [
-    { group: 'Machines & drives', items: ['Electrical Drives (German) — A'] },
+    { group: 'Machines & drives', items: ['Electrical Drives (German)'] },
     {
       group: 'Power electronics',
-      items: ['Power Electronics (German) — A', 'Electric Circuits I & II (German)', 'Analogue Circuits', 'Digital Systems'],
+      items: ['Power Electronics (German)', 'Electric Circuits I & II (German)', 'Analogue Circuits', 'Digital Systems'],
     },
     {
       group: 'Control & automation',
       items: [
-        'Automatic Control Principle (German) — A',
-        'Digital Control (German) — A',
+        'Automatic Control Principle (German)',
+        'Digital Control (German)',
         'Programmable Industrial Control Systems',
         'Embedded Systems',
         'Sensor Technology',
@@ -220,20 +221,7 @@ export const en: Resume = {
     },
     {
       group: 'Programming & mathematics',
-      items: ['Advanced C Programming (German)', 'Advanced Mathematics A(1)(2)', 'Linear Algebra B', 'Probability & Statistics B'],
-    },
-    {
-      group: 'Courses scored 90+',
-      items: [
-        'Programming Fundamentals (German) — 90',
-        'Complex Analysis & Integral Transforms — 91',
-        'Mechanical Engineering Basics — 91',
-        'Engineering Skills Training (1) — 91',
-        'Engineering Skills Training (2) — 96',
-        'Technical English (3) — 97',
-        'Technical English (4) — 98',
-        'Project Management — 100',
-      ],
+      items: ['Advanced C Programming (German)', 'Advanced Mathematics (1)(2)', 'Linear Algebra', 'Probability & Statistics'],
     },
   ],
   languages: [

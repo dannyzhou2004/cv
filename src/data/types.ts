@@ -138,6 +138,8 @@ export interface UiText {
     soundHint: string;
     /** Footer link under the projects list: "more projects on GitHub". */
     moreProjects: string;
+    /** Small footer line: "Last updated". */
+    updated: string;
     switchLanguage: string;
     copyEmail: string;
     copied: string;

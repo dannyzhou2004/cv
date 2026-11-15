@@ -1712,6 +1712,21 @@ html[lang^='zh'] .award-title {
   border-top: 1px solid color-mix(in srgb, var(--hair) 60%, transparent);
 }
 
+.footer-inner {
+  align-items: flex-start;
+}
+
+.footer-meta {
+  display: grid;
+  gap: 0.15rem;
+  justify-items: end;
+  text-align: right;
+}
+
+.footer-updated {
+  opacity: 0.62;
+}
+
 .scroll-progress {
   position: fixed;
   inset: 0 0 auto;
