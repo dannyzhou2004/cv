@@ -53,7 +53,7 @@ export const zh: Resume = {
     nameZh: '周悦杨',
     title: '电气工程及其自动化（工学学士）· 中德合作项目',
     tagline:
-      '专注电力电子、拖动控制与工业自动化——在上海与汉堡之间求学，也努力成为两个方向之间的桥梁。',
+      '专注电力电子、拖动控制与工业自动化——在上海与汉堡之间求学；高中阶段曾赴瑞士交换一整年（AFS）。',
     location: '中国广东 · 上海 / 汉堡',
     phones: [],
     emails: ['Dannyzhou0218@gmail.com', '1532319620@qq.com'],
@@ -86,6 +86,24 @@ export const zh: Resume = {
       period: '2025.09 — 2026.02 · 2026.11 — 2027.03',
       bullets: [
         '2025/26 与 2026/27 学年共安排两个交换学期；**2024 年暑期学校**',
+      ],
+    },
+    {
+      org: '佛山市第一中学',
+      orgSub: 'Foshan No. 1 High School',
+      place: '佛山，中国',
+      degree: '高中阶段',
+      period: '2022.09 — 2023.06',
+      bullets: [],
+    },
+    {
+      org: '瑞士沙夫豪森州立中学（Kantonsschule Schaffhausen）',
+      orgSub: 'AFS 国际文化交流项目',
+      place: '沙夫豪森，瑞士',
+      degree: '一年制高中交换',
+      period: '2021.09 — 2022.06',
+      bullets: [
+        '**在瑞士州立文理中学完成一整学年**，全德语环境，入住 AFS 寄宿家庭',
       ],
     },
   ],

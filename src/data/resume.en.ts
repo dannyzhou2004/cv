@@ -53,7 +53,7 @@ export const en: Resume = {
     nameZh: '周悦杨',
     title: 'B.Eng. Electrical Engineering and Automation · Sino-German Joint Program',
     tagline:
-      'Power electronics, drive control and industrial automation — studying between Shanghai and Hamburg, and building the bridge in both directions.',
+      'Power electronics, drive control and industrial automation — studying between Shanghai and Hamburg, after a full AFS exchange year at a Swiss grammar school.',
     location: 'Guangdong, China · Shanghai / Hamburg',
     phones: [],
     emails: ['Dannyzhou0218@gmail.com', '1532319620@qq.com'],
@@ -86,6 +86,24 @@ export const en: Resume = {
       period: 'Sep 2025 — Feb 2026 · Nov 2026 — Mar 2027',
       bullets: [
         'Two exchange terms across the 2025/26 and 2026/27 academic years; **summer school 2024**',
+      ],
+    },
+    {
+      org: 'Foshan No. 1 High School',
+      orgSub: 'Foshan, Guangdong',
+      place: 'Foshan, China',
+      degree: 'High school — senior year',
+      period: 'Sep 2022 — Jun 2023',
+      bullets: [],
+    },
+    {
+      org: 'Kantonsschule Schaffhausen',
+      orgSub: 'AFS Intercultural Programs · Switzerland',
+      place: 'Schaffhausen, Switzerland',
+      degree: 'One-year high-school exchange',
+      period: 'Sep 2021 — Jun 2022',
+      bullets: [
+        '**Full academic year abroad** at a Swiss state grammar school, German-language immersion, hosted by an AFS host family',
       ],
     },
   ],
