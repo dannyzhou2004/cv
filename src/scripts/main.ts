@@ -212,6 +212,7 @@ const MUSIC_END_FADE_MS = 3000;
 /** Inputs that show the visitor is engaging with the page. */
 const MUSIC_INTENT_EVENTS: ReadonlyArray<[string, AddEventListenerOptions]> = [
   ['wheel', { capture: true, passive: true }],
+  ['scroll', { capture: true, passive: true }],
   ['touchmove', { capture: true, passive: true }],
   ['pointerdown', { capture: true }],
   ['keydown', { capture: true }],
@@ -238,6 +239,7 @@ function initMusic(): void {
   let needsGesture = false;
   let userPaused = false;
   let ending = false;
+  let lastWake = 0;
   let fadeId = 0;
   let unbindIntent: (() => void) | null = null;
 
@@ -370,16 +372,25 @@ function initMusic(): void {
       bindIntent(enableSound);
       return;
     }
-    // Even muted playback was refused (rare): only a real click/key can start it.
-    const onFirstIntent = async (): Promise<void> => {
-      clearIntent();
-      userPaused = false;
+    // Even muted playback was refused (rare). The first scroll/gesture wakes it:
+    // scrolling cannot grant "activation", so start muted first, then unmute.
+    const wake = async (): Promise<void> => {
+      if (userPaused) return;
+      if (playing) {
+        if (needsGesture) enableSound();
+        return;
+      }
+      const now = performance.now();
+      if (now - lastWake < 1200) return;
+      lastWake = now;
       audio.muted = false;
-      if (await start(true)) return;
-      // Still refused (e.g. a key press that the browser ignores): keep waiting.
-      bindIntent(onFirstIntent, MUSIC_ACTIVATION_EVENTS);
+      if (await start(true)) {
+        clearIntent();
+        return;
+      }
+      if (await start(false)) enableSound();
     };
-    bindIntent(onFirstIntent, MUSIC_ACTIVATION_EVENTS);
+    bindIntent(wake, MUSIC_INTENT_EVENTS);
   })();
 }
 
