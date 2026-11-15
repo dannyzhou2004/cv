@@ -55,7 +55,8 @@ export const zh: Resume = {
     title: '电气工程及其自动化（工学学士）· 中德合作项目',
     tagline:
       '以电气工程与自动化为基础，聚焦机器人，并向具身智能延伸：电力电子、运动控制与嵌入式系统的交叉实践。',
-    location: '中国广东 · 上海 / 汉堡',
+    location: '广东佛山 · 上海 / 汉堡',
+    hobbies: ['国画', '健身', '长跑'],
     phones: [],
     emails: ['Dannyzhou0218@gmail.com', '1532319620@qq.com'],
     links: [
@@ -86,7 +87,7 @@ export const zh: Resume = {
       degree: '交换学习 · 电气工程',
       period: '2025.09 — 2026.02 · 2026.11 — 2027.03',
       bullets: [
-        '2025/26 与 2026/27 学年共安排两个交换学期；**2024 年暑期学校**',
+        '2025/26 与 2026/27 学年共安排两个交换学期；2024 年暑期学校',
       ],
     },
     {
@@ -115,7 +116,7 @@ export const zh: Resume = {
       role: '硬件工程师',
       period: '2026.11 — 2027.03',
       bullets: [
-        '在同一块 PCB 上开发并完善 **Morticron 波形发生器**固件，**STM32H753ZI** 与 **Arduino Nano** 作为两个独立功能单元各司其职',
+        '使用 **STM32H753ZI** 与 **Arduino Nano** 开发并完善 **Morticron 波形发生器**固件',
         '负责**新功能验证与添加**、**固件适配**与烧录',
         '完成整机组装与调试，覆盖从板级 bring-up 到系统级测试',
       ],
@@ -135,7 +136,7 @@ export const zh: Resume = {
       title: 'Morticron 波形发生器 — 固件与硬件',
       role: '硬件工程师 · Stucke Elektronik',
       bullets: [
-        '在**同一块 PCB** 上开发并扩展波形发生器固件，**STM32H753ZI** 与 **Arduino Nano** 分别承担独立功能',
+        '使用 **STM32H753ZI** 与 **Arduino Nano** 开发并扩展波形发生器固件',
         '**新功能验证与实现**、固件适配、烧录，以及整机组装与调试',
       ],
     },
@@ -156,14 +157,14 @@ export const zh: Resume = {
       year: '2024–25',
     },
     {
-      title: '铜奖',
-      detail: '中国国际大学生创新大赛 · 国家级',
-      year: '2025',
-    },
-    {
       title: 'DAAD 奖学金 — 海外实习学期（Praxissemester）',
       detail: 'DAAD 资助汉堡必修实习学期（18 周）· 992 €/月 + 差旅补贴',
       year: '2026–27',
+    },
+    {
+      title: '铜奖',
+      detail: '中国国际大学生创新大赛 · 国家级',
+      year: '2025',
     },
     {
       title: 'DAAD 奖学金 — 暑期课程',
@@ -190,7 +191,14 @@ export const zh: Resume = {
     { group: '自动化', items: ['PLC 编程', '嵌入式系统', '传感器与测量'] },
     {
       group: '软件与实验',
-      items: ['MATLAB/Simulink', 'C 语言（Visual Studio 2022）', 'Java（IntelliJ IDEA）', '西门子 PLC', '数字控制'],
+      items: [
+        'MATLAB/Simulink',
+        'C 语言（Visual Studio 2022）',
+        'Java（IntelliJ IDEA）',
+        '西门子 PLC',
+        '数字控制',
+        '台式电脑整机组装与系统安装',
+      ],
     },
     {
       group: 'AI 与 Agent 工具',

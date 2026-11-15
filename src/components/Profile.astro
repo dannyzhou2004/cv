@@ -9,7 +9,7 @@ interface Props {
 
 const { resume } = Astro.props;
 const text = chrome[resume.lang];
-const { ui, education, skills, languages } = resume;
+const { ui, education, skills, languages, person } = resume;
 
 const programme = education[0];
 const exchange = education[1];
@@ -30,6 +30,10 @@ const facts = [
   {
     key: ui.sections.languages,
     value: languages.map((language) => `${language.name} — ${language.level}`).join(' · '),
+  },
+  {
+    key: text.facts.interests,
+    value: person.hobbies?.filter(Boolean).join(' · '),
   },
 ].filter((fact): fact is { key: string; value: string } => Boolean(fact.value && fact.value.trim() !== ''));
 ---

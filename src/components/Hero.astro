@@ -16,9 +16,6 @@ const altName = displayName === person.name ? zhName : person.name;
 /** Latin-only names keep the editorial serif. */
 const isLatinName = /^[\x20-\x7E\u00A0-\u024F]+$/.test(displayName);
 
-/** Editorial eyebrow: the institution line (falls back to the location). */
-const eyebrow = resume.education[0]?.orgSub?.trim() || person.location;
-
 const telHref = (phone: string): string => `tel:${phone.replace(/[^+\d]/g, '')}`;
 ---
 
@@ -26,7 +23,6 @@ const telHref = (phone: string): string => `tel:${phone.replace(/[^+\d]/g, '')}`
   <div class="shell">
     <div class="hero-grid">
       <div class="hero-main">
-        <p class="hero-kicker mono" data-reveal>{eyebrow}</p>
         <h1 class="hero-name" id="hero-name" data-latin={isLatinName ? 'true' : 'false'} data-reveal style="--i:1">
           {displayName}
         </h1>

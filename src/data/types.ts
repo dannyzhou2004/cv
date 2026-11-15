@@ -27,6 +27,8 @@ export interface Person {
   tagline: string;
   /** Where the person is based. */
   location: string;
+  /** Free-time interests shown in the profile block. */
+  hobbies?: string[];
   phones: string[];
   emails: string[];
   links: ContactLink[];

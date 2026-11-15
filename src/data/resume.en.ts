@@ -55,7 +55,8 @@ export const en: Resume = {
     title: 'B.Eng. Electrical Engineering and Automation · Sino-German Joint Program',
     tagline:
       'Electrical engineering foundations with a robotics focus, moving towards embodied intelligence — where power electronics, motion control and embedded systems meet.',
-    location: 'Guangdong, China · Shanghai / Hamburg',
+    location: 'Foshan, Guangdong · Shanghai / Hamburg',
+    hobbies: ['Chinese painting', 'Fitness training', 'Long-distance running'],
     phones: [],
     emails: ['Dannyzhou0218@gmail.com', '1532319620@qq.com'],
     links: [
@@ -86,7 +87,7 @@ export const en: Resume = {
       degree: 'Exchange study — Electrical Engineering',
       period: 'Sep 2025 — Feb 2026 · Nov 2026 — Mar 2027',
       bullets: [
-        'Two exchange terms across the 2025/26 and 2026/27 academic years; **summer school 2024**',
+        'Two exchange terms across the 2025/26 and 2026/27 academic years; summer school 2024',
       ],
     },
     {
@@ -115,7 +116,7 @@ export const en: Resume = {
       role: 'Hardware Engineer',
       period: 'Nov 2026 — Mar 2027',
       bullets: [
-        'Developed and refined the **Morticron waveform generator** firmware on a single PCB, where **STM32H753ZI** and **Arduino Nano** run as two independent functional units',
+        'Developed and refined the **Morticron waveform generator** firmware using **STM32H753ZI** and **Arduino Nano**',
         'Owned **new-feature validation and implementation**, **firmware adaptation** and flashing',
         'Assembled and debugged the complete unit, from board bring-up to system-level testing',
       ],
@@ -135,7 +136,7 @@ export const en: Resume = {
       title: 'Morticron Waveform Generator — Firmware & Hardware',
       role: 'Hardware Engineer · Stucke Elektronik',
       bullets: [
-        'Built and extended the waveform-generator firmware on a shared PCB: **STM32H753ZI** and **Arduino Nano** serve distinct functions as independent units',
+        'Built and extended the waveform-generator firmware using **STM32H753ZI** and **Arduino Nano**',
         '**Feature validation and implementation**, firmware adaptation, flashing, and full-unit assembly & debugging',
       ],
     },
@@ -156,14 +157,14 @@ export const en: Resume = {
       year: '2024–25',
     },
     {
-      title: 'Bronze Award',
-      detail: "China International College Students' Innovation Competition · National level",
-      year: '2025',
-    },
-    {
       title: 'DAAD Scholarship — Praxissemester (Industrial Internship)',
       detail: 'DAAD funding for the mandatory 18-week practical semester in Hamburg · €992/month + travel allowance',
       year: '2026–27',
+    },
+    {
+      title: 'Bronze Award',
+      detail: "China International College Students' Innovation Competition · National level",
+      year: '2025',
     },
     {
       title: 'DAAD Scholarship — Summer Course',
@@ -190,7 +191,14 @@ export const en: Resume = {
     { group: 'Automation', items: ['PLC programming', 'Embedded systems', 'Sensors & measurement'] },
     {
       group: 'Software & lab',
-      items: ['MATLAB/Simulink', 'C (Visual Studio 2022)', 'Java (IntelliJ IDEA)', 'Siemens PLC', 'Digital control'],
+      items: [
+        'MATLAB/Simulink',
+        'C (Visual Studio 2022)',
+        'Java (IntelliJ IDEA)',
+        'Siemens PLC',
+        'Digital control',
+        'Desktop PC assembly & OS installation',
+      ],
     },
     {
       group: 'AI & agent tooling',

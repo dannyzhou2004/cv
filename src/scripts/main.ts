@@ -203,10 +203,11 @@ function initNav(): void {
  * why the trigger list below mixes wheel/touch scroll with click/key: whichever
  * the visitor uses first, the music fades in from zero.
  */
-const MUSIC_TARGET_VOLUME = 0.42;
-const MUSIC_FADE_IN_MS = 7000;
+const MUSIC_TARGET_VOLUME = 0.294;
+const MUSIC_FADE_IN_MS = 4000;
 const MUSIC_FADE_OUT_MS = 900;
 const MUSIC_START_DELAY_MS = 900;
+const MUSIC_END_FADE_MS = 3000;
 
 /** Inputs that show the visitor is engaging with the page. */
 const MUSIC_INTENT_EVENTS: ReadonlyArray<[string, AddEventListenerOptions]> = [
@@ -237,6 +238,7 @@ function initMusic(): void {
   let playing = false;
   let needsGesture = false;
   let userPaused = false;
+  let ending = false;
   let fadeId = 0;
   let unbindIntent: (() => void) | null = null;
 
@@ -318,6 +320,7 @@ function initMusic(): void {
       userPaused = true;
       playing = false;
       needsGesture = false;
+      ending = false;
       clearIntent();
       ramp(0, MUSIC_FADE_OUT_MS);
       setUi();
@@ -327,8 +330,32 @@ function initMusic(): void {
       return;
     }
     userPaused = false;
+    ending = false;
     audio.muted = false;
     void start(true);
+  });
+
+  /* No native `loop`: fade out over the last seconds, then restart with a fade. */
+  audio.addEventListener('timeupdate', () => {
+    if (!playing || ending || !Number.isFinite(audio.duration)) return;
+    if (audio.duration - audio.currentTime <= MUSIC_END_FADE_MS / 1000) {
+      ending = true;
+      ramp(0, Math.max(200, (audio.duration - audio.currentTime) * 1000));
+    }
+  });
+
+  audio.addEventListener('ended', () => {
+    ending = false;
+    if (!playing) return;
+    audio.currentTime = 0;
+    audio.volume = 0;
+    void audio
+      .play()
+      .then(() => ramp(MUSIC_TARGET_VOLUME, MUSIC_FADE_IN_MS))
+      .catch(() => {
+        playing = false;
+        setUi();
+      });
   });
 
   audio.addEventListener('error', () => {
