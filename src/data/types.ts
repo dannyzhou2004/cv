@@ -136,8 +136,6 @@ export interface UiText {
     playMusic: string;
     /** Toggle label while the music is playing. */
     pauseMusic: string;
-    /** Small hint shown when the browser blocked audible autoplay. */
-    soundHint: string;
     /** Footer link under the projects list: "more projects on GitHub". */
     moreProjects: string;
     /** Small footer line: "Last updated". */

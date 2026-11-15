@@ -36,7 +36,6 @@ export const en: Resume = {
       expected: 'Expected',
       playMusic: 'Play background music',
       pauseMusic: 'Pause background music',
-      soundHint: 'Click for sound',
       moreProjects: 'More projects on GitHub',
       updated: 'Last updated',
       switchLanguage: 'Switch language',
@@ -55,7 +54,7 @@ export const en: Resume = {
     title: 'B.Eng. Electrical Engineering and Automation · Sino-German Joint Program',
     tagline:
       'Electrical engineering foundations with a robotics focus, moving towards embodied intelligence — where power electronics, motion control and embedded systems meet.',
-    location: 'Foshan, Guangdong · Shanghai / Hamburg',
+    location: 'Foshan, Guangdong',
     hobbies: ['Chinese painting', 'Fitness training', 'Long-distance running'],
     phones: [],
     emails: ['Dannyzhou0218@gmail.com', '1532319620@qq.com'],
@@ -113,7 +112,7 @@ export const en: Resume = {
       org: 'Stucke Elektronik GmbH',
       orgSub: 'stuckeGROUP · Hamburg · Praxissemester · DAAD full scholarship',
       place: 'Hamburg, Germany',
-      role: 'Hardware Engineer',
+      role: 'Hardware Engineer · R&D Department',
       period: 'Nov 2026 — Mar 2027',
       bullets: [
         'Developed and refined the **Morticron waveform generator** firmware using **STM32H753ZI** and **Arduino Nano**',

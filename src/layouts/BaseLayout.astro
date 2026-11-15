@@ -41,6 +41,8 @@ const altName = displayName === person.name ? zhName : person.name;
 const year = new Date().getFullYear();
 /** Build date = last published revision; kept subtle in the footer. */
 const updated = new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Berlin' }).format(new Date());
+/** Cache-buster so a re-encoded bgm.mp3 is never served from an old cache. */
+const audioVersion = Date.now().toString(36);
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -159,7 +161,7 @@ const jsonLd = {
     <audio
       class="bgm"
       data-audio
-      src={withBase('audio/bgm.mp3')}
+      src={withBase(`audio/bgm.mp3?v=${audioVersion}`)}
       preload="auto"
       playsinline
       aria-hidden="true"

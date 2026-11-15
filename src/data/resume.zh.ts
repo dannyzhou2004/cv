@@ -36,7 +36,6 @@ export const zh: Resume = {
       expected: '预计',
       playMusic: '播放背景音乐',
       pauseMusic: '暂停背景音乐',
-      soundHint: '点击开启声音',
       moreProjects: '在 GitHub 查看全部项目',
       updated: '最近更新',
       switchLanguage: '切换语言',
@@ -55,7 +54,7 @@ export const zh: Resume = {
     title: '电气工程及其自动化（工学学士）· 中德合作项目',
     tagline:
       '以电气工程与自动化为基础，聚焦机器人，并向具身智能延伸：电力电子、运动控制与嵌入式系统的交叉实践。',
-    location: '广东佛山 · 上海 / 汉堡',
+    location: '广东佛山',
     hobbies: ['国画', '健身', '长跑'],
     phones: [],
     emails: ['Dannyzhou0218@gmail.com', '1532319620@qq.com'],
@@ -113,7 +112,7 @@ export const zh: Resume = {
       org: 'Stucke Elektronik GmbH',
       orgSub: 'stuckeGROUP · 汉堡 · 必修实习学期 · DAAD 全额奖学金资助',
       place: '汉堡，德国',
-      role: '硬件工程师',
+      role: '研发部门 · 硬件工程师',
       period: '2026.11 — 2027.03',
       bullets: [
         '使用 **STM32H753ZI** 与 **Arduino Nano** 开发并完善 **Morticron 波形发生器**固件',

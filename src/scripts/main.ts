@@ -229,7 +229,6 @@ const MUSIC_ACTIVATION_EVENTS: ReadonlyArray<[string, AddEventListenerOptions]> 
 function initMusic(): void {
   const audio = doc.querySelector<HTMLAudioElement>('[data-audio]');
   const button = doc.querySelector<HTMLButtonElement>('[data-music]');
-  const hint = doc.querySelector<HTMLElement>('[data-music-hint]');
   if (!audio || !button) return;
 
   const playLabel = button.dataset.labelPlay ?? 'Play background music';
@@ -295,11 +294,9 @@ function initMusic(): void {
     userPaused = false;
     setUi();
     if (audible) {
-      if (hint) hint.hidden = true;
       ramp(MUSIC_TARGET_VOLUME, MUSIC_FADE_IN_MS);
     } else {
       needsGesture = true;
-      if (hint) hint.hidden = false;
     }
     return true;
   };
@@ -310,7 +307,6 @@ function initMusic(): void {
     needsGesture = false;
     audio.muted = false;
     audio.volume = 0;
-    if (hint) hint.hidden = true;
     ramp(MUSIC_TARGET_VOLUME, MUSIC_FADE_IN_MS);
     clearIntent();
   };
@@ -362,7 +358,6 @@ function initMusic(): void {
     playing = false;
     setUi();
     button.hidden = true;
-    if (hint) hint.hidden = true;
   });
 
   setUi();
@@ -376,14 +371,12 @@ function initMusic(): void {
       return;
     }
     // Even muted playback was refused (rare): only a real click/key can start it.
-    if (hint) hint.hidden = false;
     const onFirstIntent = async (): Promise<void> => {
       clearIntent();
       userPaused = false;
       audio.muted = false;
       if (await start(true)) return;
       // Still refused (e.g. a key press that the browser ignores): keep waiting.
-      if (hint) hint.hidden = false;
       bindIntent(onFirstIntent, MUSIC_ACTIVATION_EVENTS);
     };
     bindIntent(onFirstIntent, MUSIC_ACTIVATION_EVENTS);
