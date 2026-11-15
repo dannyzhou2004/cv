@@ -122,6 +122,8 @@ export interface UiText {
     pauseMusic: string;
     /** Small hint shown when the browser blocked audible autoplay. */
     soundHint: string;
+    /** Footer link under the projects list: "more projects on GitHub". */
+    moreProjects: string;
     switchLanguage: string;
     copyEmail: string;
     copied: string;

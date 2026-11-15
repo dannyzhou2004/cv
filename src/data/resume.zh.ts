@@ -37,6 +37,7 @@ export const zh: Resume = {
       playMusic: '播放背景音乐',
       pauseMusic: '暂停背景音乐',
       soundHint: '点击开启声音',
+      moreProjects: '在 GitHub 查看全部项目',
       switchLanguage: '切换语言',
       copyEmail: '复制邮箱',
       copied: '已复制',
@@ -56,24 +57,25 @@ export const zh: Resume = {
     location: '中国广东 · 上海 / 汉堡',
     phones: [],
     emails: ['Dannyzhou0218@gmail.com', '1532319620@qq.com'],
-    links: [],
+    links: [
+      { label: 'GitHub 项目', href: 'https://github.com/dannyzhou2004' },
+    ],
   },
   stats: [
     { value: '第 1 名', label: '专业排名', note: '共 51 人' },
     { value: '91.74', label: '加权平均分', note: '满分 100' },
     { value: '4.0', label: 'GPA', note: '满分 4.5 · 最高档' },
-    { value: '66', label: '德语授课学分', note: '累计已修 250.5 学分' },
+    { value: '26%', label: '德语授课学分占比', note: '占 250.5 总学分' },
   ],
   education: [
     {
       org: '上海理工大学（USST）',
-      orgSub: '上海-汉堡学院',
+      orgSub: '中德国际学院',
       place: '上海，中国',
       degree: '电气工程及其自动化 工学学士 · 中德合作项目',
       period: '2023.09 — 2027.07（预计）',
       bullets: [
-        '**专业排名 1/51** · 加权平均分 **91.74/100** · GPA **4.0/4.5**（最高档）· 已修 **199/250.5** 学分',
-        '德语、中文双语授课；**已完成 66 个德语授课学分**',
+        '**专业排名 1/51** · 加权平均分 **91.74/100** · GPA **4.0/4.5**（最高档）· **德语授课学分占总学分 26%**',
       ],
     },
     {
@@ -89,6 +91,18 @@ export const zh: Resume = {
   ],
   experience: [
     {
+      org: 'Stucke Elektronik GmbH',
+      orgSub: 'stuckeGROUP · 汉堡',
+      place: '汉堡，德国',
+      role: '硬件工程师',
+      period: '2026.11 — 2027.03',
+      bullets: [
+        '基于 **Arduino Nano** 与 **STM32H753ZI** 开发并完善 **Morticron 波形发生器**项目',
+        '负责**新功能验证与添加**、**固件适配**与烧录',
+        '完成整机组装与调试，覆盖从板级 bring-up 到系统级测试',
+      ],
+    },
+    {
       org: '广东广船国际海洋科技研究院',
       orgSub: '广州船舶国际（CSSC）',
       place: '广州，中国',
@@ -101,6 +115,14 @@ export const zh: Resume = {
     },
   ],
   projects: [
+    {
+      title: 'Morticron 波形发生器 — 固件与硬件',
+      role: '硬件工程师 · Stucke Elektronik',
+      bullets: [
+        '在 **STM32H753ZI** 上开发并扩展波形发生器固件，并用 **Arduino Nano** 做原型验证',
+        '**新功能验证与实现**、固件适配、烧录，以及整机组装与调试',
+      ],
+    },
     {
       title: '基于计算机视觉的遥感智能无人机巡检系统',
       role: '团队负责人',
@@ -149,6 +171,10 @@ export const zh: Resume = {
       group: '软件与实验',
       items: ['MATLAB/Simulink', 'C 语言（Visual Studio 2022）', 'Java（IntelliJ IDEA）', '西门子 PLC', '数字控制'],
     },
+    {
+      group: 'AI 与 Agent 工具',
+      items: ['DeepSeek Harness', 'WorkBuddy', 'Agent 工作流自动化', '独立项目开发', 'STM32 / Arduino 固件'],
+    },
   ],
   coursework: [
     { group: '电机与拖动', items: ['电力拖动（德语授课）— A'] },
@@ -174,6 +200,7 @@ export const zh: Resume = {
   languages: [
     { name: '英语', level: 'IELTS 7.5', detail: '听力 8.5 · 阅读 7.5 · 写作 6.5 · 口语 6.5', score: 78 },
     { name: '德语', level: '歌德 B2 · TestDaF', detail: '听力 4 · 口语 4 · 阅读 4 · 写作 3', score: 66 },
-    { name: '中文', level: '母语', detail: '普通话 · 粤语', score: 100 },
+    { name: '普通话', level: '母语', detail: '中文母语', score: 100 },
+    { name: '粤语', level: '母语', detail: '母语 · 日常与工作交流', score: 100 },
   ],
 };

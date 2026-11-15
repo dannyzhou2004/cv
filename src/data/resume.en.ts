@@ -37,6 +37,7 @@ export const en: Resume = {
       playMusic: 'Play background music',
       pauseMusic: 'Pause background music',
       soundHint: 'Click for sound',
+      moreProjects: 'More projects on GitHub',
       switchLanguage: 'Switch language',
       copyEmail: 'Copy email address',
       copied: 'Copied',
@@ -56,24 +57,25 @@ export const en: Resume = {
     location: 'Guangdong, China · Shanghai / Hamburg',
     phones: [],
     emails: ['Dannyzhou0218@gmail.com', '1532319620@qq.com'],
-    links: [],
+    links: [
+      { label: 'GitHub · projects', href: 'https://github.com/dannyzhou2004' },
+    ],
   },
   stats: [
     { value: '1st', label: 'Rank in cohort', note: 'of 51 students' },
     { value: '91.74', label: 'Weighted average', note: 'out of 100' },
     { value: '4.0', label: 'GPA', note: 'of 4.5 · top band' },
-    { value: '66', label: 'Credits taught in German', note: 'of 250.5 completed in total' },
+    { value: '26%', label: 'Credits taught in German', note: 'share of the 250.5-credit programme' },
   ],
   education: [
     {
       org: 'University of Shanghai for Science and Technology',
-      orgSub: 'USST · Shanghai-Hamburg College',
+      orgSub: 'Sino-German International College',
       place: 'Shanghai, China',
       degree: 'B.Eng. Electrical Engineering and Automation — Sino-German Joint Program',
       period: 'Sep 2023 — Jul 2027 (expected)',
       bullets: [
-        '**Ranked 1st of 51** · weighted average **91.74/100** · GPA **4.0/4.5** (top band) · **199 of 250.5** credits completed',
-        'Taught in German and Chinese; **66 credits completed in German**',
+        '**Ranked 1st of 51** · weighted average **91.74/100** · GPA **4.0/4.5** (top band) · **26% of credits taught in German**',
       ],
     },
     {
@@ -89,6 +91,18 @@ export const en: Resume = {
   ],
   experience: [
     {
+      org: 'Stucke Elektronik GmbH',
+      orgSub: 'stuckeGROUP · Hamburg',
+      place: 'Hamburg, Germany',
+      role: 'Hardware Engineer',
+      period: 'Nov 2026 — Mar 2027',
+      bullets: [
+        'Developed and refined the **Morticron waveform generator** on **Arduino Nano** and **STM32H753ZI**',
+        'Owned **new-feature validation and implementation**, **firmware adaptation** and flashing',
+        'Assembled and debugged the complete unit, from board bring-up to system-level testing',
+      ],
+    },
+    {
       org: 'Guangdong GSI Marine Technology Research Institute',
       orgSub: 'Guangzhou Shipyard International (CSSC)',
       place: 'Guangzhou, China',
@@ -101,6 +115,14 @@ export const en: Resume = {
     },
   ],
   projects: [
+    {
+      title: 'Morticron Waveform Generator — Firmware & Hardware',
+      role: 'Hardware Engineer · Stucke Elektronik',
+      bullets: [
+        'Built and extended the waveform-generator firmware on **STM32H753ZI**, with **Arduino Nano** prototyping',
+        '**Feature validation and implementation**, firmware adaptation, flashing, and full-unit assembly & debugging',
+      ],
+    },
     {
       title: 'Remote-Sensing Intelligent UAV Patrol System Based on Computer Vision',
       role: 'Team Leader',
@@ -149,6 +171,16 @@ export const en: Resume = {
       group: 'Software & lab',
       items: ['MATLAB/Simulink', 'C (Visual Studio 2022)', 'Java (IntelliJ IDEA)', 'Siemens PLC', 'Digital control'],
     },
+    {
+      group: 'AI & agent tooling',
+      items: [
+        'DeepSeek Harness',
+        'WorkBuddy',
+        'Agentic workflow automation',
+        'Independent project delivery',
+        'STM32 / Arduino firmware',
+      ],
+    },
   ],
   coursework: [
     { group: 'Machines & drives', items: ['Electrical Drives (German) — A'] },
@@ -174,6 +206,7 @@ export const en: Resume = {
   languages: [
     { name: 'English', level: 'IELTS 7.5', detail: 'L 8.5 · R 7.5 · W 6.5 · S 6.5', score: 78 },
     { name: 'German', level: 'Goethe B2 · TestDaF', detail: 'Listening 4 · Speaking 4 · Reading 4 · Writing 3', score: 66 },
-    { name: 'Chinese', level: 'Native', detail: 'Mandarin · Cantonese', score: 100 },
+    { name: 'Mandarin Chinese', level: 'Native', detail: 'First language', score: 100 },
+    { name: 'Cantonese', level: 'Native', detail: 'First language · daily and working use', score: 100 },
   ],
 };

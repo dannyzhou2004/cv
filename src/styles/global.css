@@ -813,6 +813,20 @@ html[lang^='zh'] .stat-value {
   gap: clamp(1.25rem, 2.5vw, 1.75rem);
 }
 
+.projects-more {
+  margin-top: clamp(1.25rem, 2.5vw, 1.75rem);
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.projects-more a {
+  color: var(--copper);
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 1px;
+}
+
 .project {
   position: relative;
   padding: clamp(1.2rem, 2.8vw, 2.1rem);

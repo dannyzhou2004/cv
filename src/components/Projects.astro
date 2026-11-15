@@ -8,7 +8,10 @@ interface Props {
 }
 
 const { resume } = Astro.props;
-const { projects, awards, ui } = resume;
+const { projects, awards, ui, person } = resume;
+
+/** The "more projects" footer points at the GitHub profile in person.links. */
+const github = person.links.find((link) => /github\.com/i.test(link.href));
 
 interface ProjectView {
   title: string;
@@ -95,5 +98,14 @@ const views = projects.map(toView);
         ))
       }
     </div>
+    {
+      github && (
+        <p class="projects-more">
+          <a href={github.href} target="_blank" rel="noopener noreferrer">
+            {ui.labels.moreProjects} ↗
+          </a>
+        </p>
+      )
+    }
   </div>
 </section>
