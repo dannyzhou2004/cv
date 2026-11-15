@@ -34,10 +34,9 @@ export const en: Resume = {
     labels: {
       supervisor: 'Supervisor',
       expected: 'Expected',
-      openMusic: 'Open the background-music player',
-      closeMusic: 'Close the music player',
-      musicHint: 'Bilibili’s player opens muted-free; if it does not start, press play inside.',
-      openSource: 'Open the source video on Bilibili',
+      playMusic: 'Play background music',
+      pauseMusic: 'Pause background music',
+      soundHint: 'Click for sound',
       switchLanguage: 'Switch language',
       copyEmail: 'Copy email address',
       copied: 'Copied',
@@ -57,9 +56,7 @@ export const en: Resume = {
     location: 'Guangdong, China · Shanghai / Hamburg',
     phones: [],
     emails: ['Dannyzhou0218@gmail.com', '1532319620@qq.com'],
-    links: [
-      { label: 'Bilibili video', href: 'https://www.bilibili.com/video/BV1ta4J6TET9/' },
-    ],
+    links: [],
   },
   stats: [
     { value: '1st', label: 'Rank in cohort', note: 'of 51 students' },
@@ -179,13 +176,4 @@ export const en: Resume = {
     { name: 'German', level: 'Goethe B2 · TestDaF', detail: 'Listening 4 · Speaking 4 · Reading 4 · Writing 3', score: 66 },
     { name: 'Chinese', level: 'Native', detail: 'Mandarin · Cantonese', score: 100 },
   ],
-  // Source: https://www.bilibili.com/video/BV1ta4J6TET9/ (cid 43403250064 —
-  // matches the downloaded mp4). Nothing is re-hosted; the official player is
-  // mounted on demand.
-  music: {
-    bvid: 'BV1ta4J6TET9',
-    url: 'https://www.bilibili.com/video/BV1ta4J6TET9/',
-    title: 'Ralph Lauren march — instrumental',
-    credit: 'Bilibili · @行为准责',
-  },
 };

@@ -10,7 +10,7 @@
 - `/en/`、`/zh/` 两个静态页面，共用同一套布局与组件；内容全部来自 `src/data/*.ts`。
 - 右上角 `EN / 中文` 是真实链接（禁用 JS 也能切换），选择结果记在 `localStorage['cv-lang']`，根路径 `/` 会按上次选择跳转。
 - 所有内部链接与静态资源都走 `src/lib/paths.ts` 的 `withBase()`，因此部署到 `/<仓库名>/` 这种子路径也不会 404。
-- 客户端 JS 只有一个模块（`src/scripts/main.ts`）：滚动出现动画、导航高亮、移动端菜单、B 站音乐面板、复制邮箱、打印。
+- 客户端 JS 只有一个模块（`src/scripts/main.ts`）：滚动出现动画、导航高亮、移动端菜单、背景音乐（自动播放 + 淡入）、复制邮箱、打印。
 - 打印样式（`@media print`）已内置：隐藏导航/音乐/按钮，A4 友好，可直接「打印 / 存为 PDF」。
 
 ## 目录结构
@@ -24,7 +24,7 @@ src/
   styles/        # global.css（设计变量、组件样式、打印样式）
   scripts/       # main.ts（唯一客户端脚本）
   lib/           # paths.ts（BASE_URL 处理）、rich.ts（**加粗** → <strong>）、chrome.ts（无障碍文案）
-public/          # favicon.svg、robots.txt、.nojekyll
+public/          # favicon.svg、robots.txt、.nojekyll、audio/bgm.mp3
 ```
 
 ## 本地开发
@@ -47,26 +47,17 @@ npm run preview    # 预览构建结果 http://localhost:4321
 - 句子里的 `**文字**` 会渲染为加粗（不需要 Markdown）。
 - 区块标题取 `ui.sections.*`，导航取 `ui.nav.*`；`person.nameZh` 是中文名（当前为「周悦杨」），英文页会把它显示在拼音名下方。
 
-## 背景音乐（B 站官方播放器）
+## 背景音乐（自动播放 + 由小变大）
 
-音乐**不托管在本仓库**，而是点击右上角按钮后，在页面里挂载 B 站官方播放器
-（`player.bilibili.com/player.html?bvid=…`）。这样既不复制音频文件，也保留了原视频链接。
+音频文件：`public/audio/bgm.mp3`（96 kb/s CBR，3.43 MB，299 s）。
 
-1. 在 `src/data/resume.en.ts` 和 `resume.zh.ts` 里填同一个视频：
-   ```ts
-   music: {
-     bvid: 'BV1xxxxxxxxx',                                  // 视频页 URL 里 /video/ 后面那一段
-     url: 'https://www.bilibili.com/video/BV1xxxxxxxxx',    // 原视频页
-     title: '背景音乐',                                      // 面板标题
-     credit: '',                                            // 可选署名
-   },
-   ```
-2. `bvid` 为空时，页头不显示音乐按钮（不会留下坏按钮）。
-3. 交互：点击按钮 → 展开面板并**按需**创建 iframe（首屏 0 请求）；关闭、按 Esc、点面板外都会移除 iframe，音频随之停止。
-4. 浏览器策略：iframe 属于 B 站自己的文档，自动播放由 B 站播放器决定，可能被浏览器拦住，面板里已提示"若没有声音，点播放器里的播放键"。
-5. 视频被 UP 主删除/设为私密时播放器会显示错误页——换成新的 BV 即可，代码不用改。
+- 进站约 **0.9 s** 后尝试自动播放；音量从 **0** 用 **7 s** 平方曲线缓慢升到 **0.42**——前两秒几乎听不到，不会吓到人。
+- 浏览器若拦截"有声自动播放"（Chrome/Safari 对新访客通常如此）：自动改为**静音播放**，页头按钮旁出现「点击开启声音」；访客第一次点击/按键时取消静音，并同样从 0 淡入。
+- 页头四分音符按钮：随时暂停/继续；暂停 0.9 s 淡出，继续则重新从 0 淡入。
+- 换歌：直接覆盖 `public/audio/bgm.mp3`（文件名不变），不需要改代码。生成参数见 [docs/audio.md](docs/audio.md)。
+- 代价：为了"进来就响"，`preload="auto"` 会在首屏下载这 3.4 MB，整站产物 3.98 MB。
 
-> 关于版权：嵌入 B 站官方播放器属于平台允许的"分享"方式，比把 MP3 放到 GitHub 上**规范得多**；但它不等于获得了音乐授权，公开站点仍有被权利方投诉的可能。更稳妥的替代方案是自己买授权的 production music，放到 `public/audio/` 并用原生 `<audio>` 播放（需要时再改回即可）。
+> 版权提醒：该音轨来自 B 站二传视频（原曲《拉夫劳伦进行曲》）。在公开站点上托管 MP3 的版权风险高于嵌入官方播放器；若用于正式求职/商业场景，建议换成授权的 production music（同名覆盖即可）。
 
 ## 发布到 GitHub Pages
 

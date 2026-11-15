@@ -91,23 +91,6 @@ export interface LanguageEntry {
   score?: number;
 }
 
-/**
- * Background music hosted by Bilibili's official embed player.
- * Nothing is re-hosted on GitHub Pages: clicking the header button mounts
- * `player.bilibili.com/player.html?bvid=…`, so playback happens on Bilibili's
- * own player and the source video stays one link away.
- */
-export interface MusicSource {
-  /** BV id of the source video, e.g. `BV1d3Yi6jEmb`. */
-  bvid: string;
-  /** Canonical video page URL, used for the credit link. */
-  url: string;
-  /** Localized title shown in the panel header. */
-  title: string;
-  /** Localized credit line, e.g. "音频来源：B 站 BV…". */
-  credit: string;
-}
-
 /** Static interface copy: navigation, buttons, section headings. */
 export interface UiText {
   nav: {
@@ -133,14 +116,12 @@ export interface UiText {
   labels: {
     supervisor: string;
     expected: string;
-    /** Opens the background-music panel. */
-    openMusic: string;
-    /** Closes it (also stops playback). */
-    closeMusic: string;
-    /** Shown under the embedded player. */
-    musicHint: string;
-    /** Link label: open the source video on Bilibili. */
-    openSource: string;
+    /** Toggle label while the music is paused. */
+    playMusic: string;
+    /** Toggle label while the music is playing. */
+    pauseMusic: string;
+    /** Small hint shown when the browser blocked audible autoplay. */
+    soundHint: string;
     switchLanguage: string;
     copyEmail: string;
     copied: string;
@@ -173,6 +154,4 @@ export interface Resume {
   skills: SkillGroup[];
   coursework: CourseGroup[];
   languages: LanguageEntry[];
-  /** Optional: hide the music control entirely when absent. */
-  music?: MusicSource;
 }

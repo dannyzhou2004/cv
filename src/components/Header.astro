@@ -8,7 +8,7 @@ interface Props {
 }
 
 const { resume } = Astro.props;
-const { ui, person, music } = resume;
+const { ui, person } = resume;
 const text = chrome[resume.lang];
 const home = langUrl(resume.lang);
 
@@ -21,15 +21,6 @@ const navItems = [
   { id: 'skills', label: ui.nav.skills },
   { id: 'languages', label: ui.nav.languages },
 ];
-
-/**
- * Nothing is re-hosted on GitHub Pages: the panel mounts Bilibili's official
- * player on demand, so playback (and the rights question) stays on Bilibili.
- */
-const hasMusic = Boolean(music?.bvid);
-const playerSrc = hasMusic
-  ? `https://player.bilibili.com/player.html?bvid=${music!.bvid}&autoplay=1&danmaku=0&high_quality=0&muted=0`
-  : '';
 ---
 
 <header class="site-header" data-header>
@@ -49,54 +40,21 @@ const playerSrc = hasMusic
     </nav>
 
     <div class="header-tools">
-      {
-        hasMusic && (
-          <div class="music-wrap">
-            <button
-              class="music"
-              type="button"
-              data-music
-              data-label-open={ui.labels.openMusic}
-              data-label-close={ui.labels.closeMusic}
-              aria-expanded="false"
-              aria-controls="music-panel"
-              aria-label={ui.labels.openMusic}
-              title={ui.labels.openMusic}
-            >
-              <span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-            </button>
-
-            <div
-              class="music-panel"
-              id="music-panel"
-              data-music-panel
-              role="dialog"
-              aria-label={music.title || ui.labels.openMusic}
-              hidden
-            >
-              <div class="music-panel-head">
-                <span class="music-panel-title mono">{music.title}</span>
-                <button
-                  class="music-panel-close"
-                  type="button"
-                  data-music-close
-                  aria-label={ui.labels.closeMusic}
-                  title={ui.labels.closeMusic}
-                >
-                  ×
-                </button>
-              </div>
-
-              <div class="music-frame" data-music-frame data-src={playerSrc}></div>
-              <p class="music-hint">{ui.labels.musicHint}</p>
-              <a class="music-source" href={music.url} target="_blank" rel="noopener noreferrer">
-                {ui.labels.openSource}
-              </a>
-              {music.credit && <p class="music-credit mono">{music.credit}</p>}
-            </div>
-          </div>
-        )
-      }
+      <div class="music-wrap">
+        <button
+          class="music"
+          type="button"
+          data-music
+          data-label-play={ui.labels.playMusic}
+          data-label-pause={ui.labels.pauseMusic}
+          aria-pressed="false"
+          aria-label={ui.labels.playMusic}
+          title={ui.labels.playMusic}
+        >
+          <span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        </button>
+        <span class="music-hint mono" data-music-hint hidden>{ui.labels.soundHint}</span>
+      </div>
 
       <div class="lang-toggle" role="group" aria-label={ui.labels.switchLanguage}>
         <a href={langUrl('en')} hreflang="en" lang="en" data-set-lang="en" aria-current={resume.lang === 'en' ? 'true' : undefined}>EN</a>

@@ -34,10 +34,9 @@ export const zh: Resume = {
     labels: {
       supervisor: '指导教师',
       expected: '预计',
-      openMusic: '打开背景音乐播放器',
-      closeMusic: '关闭背景音乐播放器',
-      musicHint: 'B 站播放器会自动尝试播放；若没有声音，点播放器里的播放键。',
-      openSource: '在 B 站打开原视频',
+      playMusic: '播放背景音乐',
+      pauseMusic: '暂停背景音乐',
+      soundHint: '点击开启声音',
       switchLanguage: '切换语言',
       copyEmail: '复制邮箱',
       copied: '已复制',
@@ -57,9 +56,7 @@ export const zh: Resume = {
     location: '中国广东 · 上海 / 汉堡',
     phones: [],
     emails: ['Dannyzhou0218@gmail.com', '1532319620@qq.com'],
-    links: [
-      { label: 'B 站原视频', href: 'https://www.bilibili.com/video/BV1ta4J6TET9/' },
-    ],
+    links: [],
   },
   stats: [
     { value: '第 1 名', label: '专业排名', note: '共 51 人' },
@@ -179,12 +176,4 @@ export const zh: Resume = {
     { name: '德语', level: '歌德 B2 · TestDaF', detail: '听力 4 · 口语 4 · 阅读 4 · 写作 3', score: 66 },
     { name: '中文', level: '母语', detail: '普通话 · 粤语', score: 100 },
   ],
-  // 源：https://www.bilibili.com/video/BV1ta4J6TET9/（cid 43403250064，与下载的 mp4 一致）
-  // 音频不托管在仓库，点击后挂载 B 站官方播放器。
-  music: {
-    bvid: 'BV1ta4J6TET9',
-    url: 'https://www.bilibili.com/video/BV1ta4J6TET9/',
-    title: '《拉夫劳伦进行曲》纯音乐',
-    credit: 'B 站 · @行为准责',
-  },
 };

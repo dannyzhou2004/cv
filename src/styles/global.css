@@ -187,7 +187,10 @@ html[lang^='zh'] .hero-name[data-latin='true'] {
   border: 0;
 }
 
-/* The <audio> element is gone: the header button mounts Bilibili's player. */
+/* The <audio> element is driven from the header button; it never shows itself. */
+.bgm {
+  display: none;
+}
 
 .skip-link {
   position: fixed;
@@ -381,127 +384,47 @@ html[lang^='zh'] .hero-name[data-latin='true'] {
   height: 80%;
 }
 
-.music.is-open {
+.music.is-playing {
   border-color: var(--copper);
   color: var(--copper);
   background: var(--copper-wash);
 }
 
-.music.is-open .eq i {
+.music.is-playing .eq i {
   background: var(--copper);
   animation: eq 1.1s ease-in-out infinite;
 }
 
-.music.is-open .eq i:nth-child(2) {
+.music.is-playing .eq i:nth-child(2) {
   animation-delay: 0.16s;
 }
 
-.music.is-open .eq i:nth-child(3) {
+.music.is-playing .eq i:nth-child(3) {
   animation-delay: 0.32s;
 }
 
-.music.is-open .eq i:nth-child(4) {
+.music.is-playing .eq i:nth-child(4) {
   animation-delay: 0.08s;
 }
 
-/* --- Bilibili player panel ------------------------------------------------ */
-
 .music-wrap {
-  position: relative;
-}
-
-.music-panel {
-  position: absolute;
-  top: calc(100% + 0.6rem);
-  right: 0;
-  z-index: 60;
-  width: min(20rem, calc(100vw - 1.5rem));
-  padding: 0.85rem;
-  border: 1px solid var(--hair);
-  background: var(--surface);
-  box-shadow:
-    0 1px 0 rgba(21, 23, 28, 0.04),
-    0 24px 40px -30px rgba(21, 23, 28, 0.55);
-}
-
-.music-panel[hidden] {
-  display: none;
-}
-
-.music-panel::before {
-  content: '';
-  position: absolute;
-  top: -0.43rem;
-  right: 1rem;
-  width: 0.8rem;
-  height: 0.8rem;
-  border-top: 1px solid var(--hair);
-  border-left: 1px solid var(--hair);
-  background: var(--surface);
-  transform: rotate(45deg);
-}
-
-.music-panel-head {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  margin-bottom: 0.6rem;
+  gap: 0.5rem;
 }
 
-.music-panel-title {
-  color: var(--ink);
-}
-
-.music-panel-close {
-  display: inline-grid;
-  place-items: center;
-  width: 1.6rem;
-  height: 1.6rem;
-  border: 1px solid var(--hair);
-  background: transparent;
-  color: var(--muted);
-  font-size: 1rem;
-  line-height: 1;
-  cursor: pointer;
-  transition: border-color 0.2s var(--ease), color 0.2s var(--ease);
-}
-
-.music-panel-close:hover,
-.music-panel-close:focus-visible {
-  border-color: var(--copper);
+/* Only visible while the browser has blocked audible autoplay. */
+.music-hint {
+  max-width: 9rem;
+  font-size: 0.62rem;
+  letter-spacing: 0.04em;
+  line-height: 1.3;
   color: var(--copper);
+  text-transform: none;
 }
 
-.music-frame {
-  position: relative;
-  aspect-ratio: 16 / 9;
-  overflow: hidden;
-  background: #0b0b0d;
-}
-
-.music-frame iframe {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  border: 0;
-}
-
-.music-hint,
-.music-credit {
-  margin-top: 0.55rem;
-  font-size: var(--step--1);
-  line-height: 1.45;
-  color: var(--muted);
-}
-
-.music-source {
-  display: inline-block;
-  margin-top: 0.45rem;
-  font-size: var(--step--1);
-  color: var(--copper);
-  border-bottom: 1px solid currentColor;
+.music-hint[hidden] {
+  display: none;
 }
 
 @keyframes eq {
@@ -1403,7 +1326,7 @@ html[lang^='zh'] .award-title {
     transition: none;
   }
 
-  .music.is-open .eq i {
+  .music.is-playing .eq i {
     animation: none;
     height: 100%;
   }

@@ -166,68 +166,134 @@ function initNav(): void {
   });
 }
 
-/* --- background music (Bilibili embed) ------------------------------------ */
+/* --- background music ----------------------------------------------------- */
+
+/**
+ * The track starts on its own, but quietly: `play()` from 0, then a slow
+ * quadratic ramp to a low target volume, so it grows in instead of blasting.
+ *
+ * Browsers with a strict autoplay policy reject audible `play()` on first
+ * visit. Fallback: autoplay muted (allowed), show a one-line hint, and on the
+ * very first interaction unmute and run the same ramp — no sudden jump.
+ */
+const MUSIC_TARGET_VOLUME = 0.42;
+const MUSIC_FADE_IN_MS = 7000;
+const MUSIC_FADE_OUT_MS = 900;
+const MUSIC_START_DELAY_MS = 900;
 
 function initMusic(): void {
+  const audio = doc.querySelector<HTMLAudioElement>('[data-audio]');
   const button = doc.querySelector<HTMLButtonElement>('[data-music]');
-  const panel = doc.querySelector<HTMLElement>('[data-music-panel]');
-  const frameHost = doc.querySelector<HTMLElement>('[data-music-frame]');
-  if (!button || !panel || !frameHost) return;
+  const hint = doc.querySelector<HTMLElement>('[data-music-hint]');
+  if (!audio || !button) return;
 
-  const closeButton = doc.querySelector<HTMLButtonElement>('[data-music-close]');
-  const openLabel = button.dataset.labelOpen ?? '';
-  const closeLabel = button.dataset.labelClose ?? '';
+  const playLabel = button.dataset.labelPlay ?? 'Play background music';
+  const pauseLabel = button.dataset.labelPause ?? 'Pause background music';
 
-  /** The iframe exists only while the panel is open, so nothing loads up-front. */
-  const mountPlayer = (): void => {
-    if (frameHost.querySelector('iframe')) return;
-    const src = frameHost.dataset.src;
-    if (!src) return;
-    const frame = doc.createElement('iframe');
-    frame.src = src;
-    frame.title = panel.getAttribute('aria-label') ?? 'Bilibili player';
-    frame.loading = 'eager';
-    frame.allow = 'autoplay; encrypted-media; fullscreen; picture-in-picture';
-    frame.setAttribute('allowfullscreen', '');
-    frame.setAttribute('referrerpolicy', 'no-referrer-when-downgrade');
-    frameHost.appendChild(frame);
+  let playing = false;
+  let needsGesture = false;
+  let fadeId = 0;
+
+  const setUi = (): void => {
+    button.classList.toggle('is-playing', playing);
+    button.setAttribute('aria-pressed', playing ? 'true' : 'false');
+    button.setAttribute('aria-label', playing ? pauseLabel : playLabel);
+    button.title = playing ? pauseLabel : playLabel;
   };
 
-  const setOpen = (open: boolean): void => {
-    panel.hidden = !open;
-    button.classList.toggle('is-open', open);
-    button.setAttribute('aria-expanded', open ? 'true' : 'false');
-    button.setAttribute('aria-label', open ? closeLabel : openLabel);
-    button.title = open ? closeLabel : openLabel;
-    if (open) {
-      mountPlayer();
-    } else {
-      // Removing the frame is the only reliable way to stop cross-origin audio.
-      frameHost.replaceChildren();
+  /** Quadratic so the first seconds stay nearly silent, then it grows. */
+  const ramp = (to: number, duration: number): void => {
+    window.clearInterval(fadeId);
+    const from = audio.volume;
+    const started = performance.now();
+    fadeId = window.setInterval(() => {
+      const progress = Math.min(1, (performance.now() - started) / duration);
+      audio.volume = Math.min(1, Math.max(0, from + (to - from) * progress * progress));
+      if (progress >= 1) window.clearInterval(fadeId);
+    }, 60);
+  };
+
+  const start = async (audible: boolean): Promise<boolean> => {
+    audio.volume = 0;
+    audio.muted = !audible;
+    try {
+      await audio.play();
+    } catch {
+      audio.muted = false;
+      return false;
     }
+    playing = true;
+    setUi();
+    if (audible) {
+      if (hint) hint.hidden = true;
+      ramp(MUSIC_TARGET_VOLUME, MUSIC_FADE_IN_MS);
+    } else {
+      needsGesture = true;
+      if (hint) hint.hidden = false;
+    }
+    return true;
   };
 
-  button.addEventListener('click', () => setOpen(panel.hidden));
-  closeButton?.addEventListener('click', () => {
-    setOpen(false);
-    button.focus();
+  const enableSound = async (): Promise<void> => {
+    if (!needsGesture) return;
+    needsGesture = false;
+    audio.muted = false;
+    audio.volume = 0;
+    if (audio.paused) {
+      try {
+        await audio.play();
+      } catch {
+        return;
+      }
+    }
+    if (hint) hint.hidden = true;
+    ramp(MUSIC_TARGET_VOLUME, MUSIC_FADE_IN_MS);
+    window.removeEventListener('pointerdown', enableSound, true);
+    window.removeEventListener('keydown', enableSound, true);
+  };
+
+  button.addEventListener('click', () => {
+    if (playing) {
+      playing = false;
+      ramp(0, MUSIC_FADE_OUT_MS);
+      setUi();
+      window.setTimeout(() => {
+        if (!playing) audio.pause();
+      }, MUSIC_FADE_OUT_MS + 80);
+      return;
+    }
+    audio.muted = false;
+    void start(true);
   });
 
-  doc.addEventListener('keydown', (event) => {
-    if (event.key !== 'Escape' || panel.hidden) return;
-    setOpen(false);
-    button.focus();
+  audio.addEventListener('error', () => {
+    playing = false;
+    setUi();
+    button.hidden = true;
+    if (hint) hint.hidden = true;
   });
 
-  // A click anywhere else closes the panel (and therefore stops the audio).
-  doc.addEventListener('pointerdown', (event) => {
-    if (panel.hidden) return;
-    const target = event.target;
-    if (target instanceof Node && (panel.contains(target) || button.contains(target))) return;
-    setOpen(false);
-  });
+  setUi();
 
-  setOpen(false);
+  void (async () => {
+    await new Promise((resolve) => window.setTimeout(resolve, MUSIC_START_DELAY_MS));
+    if (await start(true)) return; // usual case: browser allows sound
+    if (await start(false)) {
+      // Strict autoplay policy: rolling silently until the first interaction.
+      window.addEventListener('pointerdown', enableSound, true);
+      window.addEventListener('keydown', enableSound, true);
+      return;
+    }
+    // Even muted autoplay was refused (rare): wait for the first interaction.
+    if (hint) hint.hidden = false;
+    const onFirstGesture = (): void => {
+      window.removeEventListener('pointerdown', onFirstGesture, true);
+      window.removeEventListener('keydown', onFirstGesture, true);
+      void start(true);
+    };
+    window.addEventListener('pointerdown', onFirstGesture, true);
+    window.addEventListener('keydown', onFirstGesture, true);
+  })();
 }
 
 /* --- copy e-mail ---------------------------------------------------------- */
