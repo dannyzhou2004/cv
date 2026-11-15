@@ -1,0 +1,15 @@
+---
+interface Props {
+  index: string;
+  id: string;
+  title: string;
+}
+
+const { index, id, title } = Astro.props;
+---
+
+<div class="sec-head">
+  <p class="sec-index">{index}</p>
+  <h2 class="sec-title" id={id}>{title}</h2>
+  <span class="sec-rule" aria-hidden="true"></span>
+</div>

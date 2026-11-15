@@ -1,0 +1,30 @@
+---
+import type { Resume } from '../data/types';
+import SectionHead from './SectionHead.astro';
+
+interface Props {
+  resume: Resume;
+}
+
+const { resume } = Astro.props;
+const { awards, ui } = resume;
+---
+
+<section class="section" id="honours" aria-labelledby="honours-heading">
+  <div class="shell">
+    <SectionHead index="05" id="honours-heading" title={ui.sections.honours} />
+    <ul class="awards" role="list">
+      {
+        awards.map((award, index) => (
+          <li class="award" data-reveal style={`--i:${index}`}>
+            <p class="award-year">{award.year ?? ''}</p>
+            <div>
+              <h3 class="award-title">{award.title}</h3>
+              <p class="award-detail">{award.detail}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

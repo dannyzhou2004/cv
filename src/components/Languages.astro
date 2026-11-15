@@ -1,0 +1,41 @@
+---
+import type { Resume } from '../data/types';
+import SectionHead from './SectionHead.astro';
+
+interface Props {
+  resume: Resume;
+}
+
+const { resume } = Astro.props;
+const { languages, ui } = resume;
+
+const clampScore = (score: number): number => Math.max(0, Math.min(100, Math.round(score)));
+---
+
+<section class="section" id="languages" aria-labelledby="languages-heading">
+  <div class="shell">
+    <SectionHead index="08" id="languages-heading" title={ui.sections.languages} />
+    <ul class="langs" role="list">
+      {
+        languages.map((language, index) => (
+          <li class="lang" data-reveal style={`--i:${index}`}>
+            <div class="lang-head">
+              <h3 class="lang-name">{language.name}</h3>
+              <p class="lang-level">{language.level}</p>
+            </div>
+            {typeof language.score === 'number' && (
+              <div
+                class="bar"
+                role="img"
+                aria-label={`${language.name}: ${clampScore(language.score)} / 100`}
+              >
+                <span class="bar-fill" style={`--fill:${clampScore(language.score)}%`}></span>
+              </div>
+            )}
+            {language.detail && <p class="lang-detail">{language.detail}</p>}
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

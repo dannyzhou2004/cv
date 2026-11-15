@@ -1,0 +1,99 @@
+---
+import type { ProjectEntry, Resume } from '../data/types';
+import { rich } from '../lib/rich';
+import SectionHead from './SectionHead.astro';
+
+interface Props {
+  resume: Resume;
+}
+
+const { resume } = Astro.props;
+const { projects, awards, ui } = resume;
+
+interface ProjectView {
+  title: string;
+  role: string;
+  supervisor?: string;
+  badge?: string;
+  bullets: string[];
+}
+
+/**
+ * Projects carry their prize inside a `**Bold**` bullet (e.g. "Bronze Award").
+ * When that bullet starts with one of the award titles, promote the prize to a
+ * badge and drop the duplicated prefix from the bullet copy.
+ */
+function toView(project: ProjectEntry): ProjectView {
+  const hit = awards.find((award) => {
+    const title = award.title.trim().toLowerCase();
+    if (title === '') return false;
+    return project.bullets.some((bullet) => bullet.toLowerCase().includes(title));
+  });
+
+  let bullets = project.bullets.slice();
+
+  if (hit) {
+    const needle = hit.title.trim();
+    bullets = bullets
+      .map((bullet) => {
+        const at = bullet.toLowerCase().indexOf(needle.toLowerCase());
+        if (at === -1) return bullet;
+        return bullet
+          .slice(at + needle.length)
+          .replace(/^\*\*/, '')
+          .replace(/^[\s,;:·—–-]+/, '')
+          .trim();
+      })
+      .filter((bullet) => bullet !== '');
+  }
+
+  return {
+    title: project.title,
+    role: project.role,
+    supervisor: project.supervisor,
+    badge: hit ? `${hit.title}${hit.year ? ` · ${hit.year}` : ''}` : undefined,
+    bullets,
+  };
+}
+
+const views = projects.map(toView);
+---
+
+<section class="section" id="projects" aria-labelledby="projects-heading">
+  <div class="shell">
+    <SectionHead index="04" id="projects-heading" title={ui.sections.projects} />
+    <div class="projects">
+      {
+        views.map((project, index) => (
+          <article class="project" data-reveal style={`--i:${index}`}>
+            {project.badge && (
+              <p class="project-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                  <circle cx="12" cy="9" r="4.5" />
+                  <path d="m8.5 13.4-1.9 7.1 5.4-2.4 5.4 2.4-1.9-7.1" />
+                </svg>
+                <span>{project.badge}</span>
+              </p>
+            )}
+            <h3 class="project-title">{project.title}</h3>
+            <p class="project-meta">
+              <span>{project.role}</span>
+              {project.supervisor && (
+                <span>
+                  {ui.labels.supervisor}: {project.supervisor}
+                </span>
+              )}
+            </p>
+            {project.bullets.length > 0 && (
+              <ul class="bullets" role="list">
+                {project.bullets.map((bullet) => (
+                  <li set:html={rich(bullet)} />
+                ))}
+              </ul>
+            )}
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

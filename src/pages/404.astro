@@ -1,0 +1,65 @@
+---
+import '@fontsource-variable/newsreader';
+import '@fontsource-variable/inter';
+import '@fontsource/ibm-plex-mono/latin-400.css';
+import '../styles/global.css';
+import { withBase } from '../lib/paths';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>404 — Page not found / 页面未找到</title>
+    <meta name="robots" content="noindex" />
+    <link rel="icon" type="image/svg+xml" href={withBase('favicon.svg')} />
+    <meta name="theme-color" content="#f6f2ea" />
+  </head>
+
+  <body>
+    <main id="main" class="shell notfound" tabindex="-1">
+      <p class="notfound-code mono">Error 404</p>
+      <h1 class="notfound-title">This page is not part of the dossier.</h1>
+      <p class="notfound-copy">
+        The page you asked for does not exist — or it has moved. <span lang="zh-CN">你访问的页面不存在，或已被移动。</span>
+      </p>
+      <p class="notfound-links">
+        <a class="btn" href={withBase('en/')} hreflang="en" lang="en">English CV</a>
+        <a class="btn btn--ghost" href={withBase('zh/')} hreflang="zh-CN" lang="zh-CN">中文简历</a>
+      </p>
+    </main>
+
+    <style>
+      .notfound {
+        display: grid;
+        gap: 1.25rem;
+        align-content: center;
+        min-height: 100vh;
+        max-width: 40rem;
+        padding-block: 4rem;
+      }
+      .notfound-code {
+        color: var(--copper);
+        margin: 0;
+      }
+      .notfound-title {
+        font-size: var(--step-3);
+        margin: 0;
+      }
+      html[lang^='zh'] .notfound-title {
+        font-family: var(--font-cjk);
+      }
+      .notfound-copy {
+        color: var(--muted);
+        max-width: 46ch;
+      }
+      .notfound-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.55rem;
+        margin-top: 0.5rem;
+      }
+    </style>
+  </body>
+</html>

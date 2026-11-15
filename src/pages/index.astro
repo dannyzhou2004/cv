@@ -1,0 +1,113 @@
+---
+/**
+ * Root entry point.
+ *
+ * Defaults to `/en/`, but sends returning visitors to the language they last
+ * chose (`localStorage['cv-lang']`). Without JS the `<noscript>` meta refresh
+ * still lands on `/en/`, and the links below work everywhere. Every URL is
+ * built from `BASE_URL`, so GitHub Pages project paths (`/cv/`) keep working.
+ */
+import { withBase } from '../lib/paths';
+
+const base = import.meta.env.BASE_URL;
+const site = Astro.site ?? new URL('https://dannyzhou2004.github.io');
+const defaultUrl = withBase('en/');
+const canonical = new URL(defaultUrl, site).href;
+const plainBase = base.replace(/\/+$/, '');
+
+/** Tiny redirect: honour the stored language, never break without JS. */
+const redirectScript = `(function () {
+  var defaultUrl = ${JSON.stringify(defaultUrl)};
+  var plainBase = ${JSON.stringify(plainBase)};
+  var stored = null;
+  try {
+    stored = window.localStorage.getItem('cv-lang');
+  } catch (error) {
+    stored = null;
+  }
+  var preferred = stored === 'zh' ? 'zh/' : stored === 'en' ? 'en/' : null;
+  var target = preferred ? plainBase + '/' + preferred : defaultUrl;
+  window.location.replace(target);
+})();`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Zhou Yueyang — CV</title>
+    <meta name="robots" content="noindex" />
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="en" href={new URL(withBase('en/'), site).href} />
+    <link rel="alternate" hreflang="zh-CN" href={new URL(withBase('zh/'), site).href} />
+    <link rel="alternate" hreflang="x-default" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href={withBase('favicon.svg')} />
+    <noscript><meta http-equiv="refresh" content={`0; url=${defaultUrl}`} /></noscript>
+    <style>
+      :root { color-scheme: light; }
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+      }
+      body {
+        display: grid;
+        place-items: center;
+        background: #f6f2ea;
+        color: #15171c;
+        font-family: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans SC', system-ui, sans-serif;
+      }
+      main {
+        display: grid;
+        gap: 1rem;
+        justify-items: center;
+        padding: 2rem;
+        text-align: center;
+      }
+      .mark {
+        font-family: Georgia, 'Times New Roman', serif;
+        font-size: 1.15rem;
+        letter-spacing: 0.28em;
+        padding: 0.4rem 0.7rem;
+        border: 1px solid #15171c;
+      }
+      .links {
+        display: flex;
+        gap: 1.25rem;
+        font-size: 0.85rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+      a {
+        color: #b4552a;
+        text-decoration: none;
+        border-bottom: 1px solid currentColor;
+        padding-bottom: 1px;
+      }
+      p {
+        margin: 0;
+        color: #5b5852;
+        font-size: 0.8rem;
+        letter-spacing: 0.06em;
+      }
+      :focus-visible {
+        outline: 2px solid #b4552a;
+        outline-offset: 3px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <main>
+      <span class="mark" aria-hidden="true">ZY</span>
+      <p>Redirecting… / 正在跳转…</p>
+      <nav class="links" aria-label="Language">
+        <a href={withBase('en/')} hreflang="en" lang="en">English</a>
+        <a href={withBase('zh/')} hreflang="zh-CN" lang="zh-CN">中文</a>
+      </nav>
+    </main>
+
+    <script is:inline set:html={redirectScript}></script>
+  </body>
+</html>

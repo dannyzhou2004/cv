@@ -1,0 +1,155 @@
+---
+import '@fontsource-variable/newsreader';
+import '@fontsource-variable/newsreader/wght-italic.css';
+import '@fontsource-variable/inter';
+import '@fontsource/ibm-plex-mono/latin-400.css';
+import '@fontsource/ibm-plex-mono/latin-500.css';
+import '../styles/global.css';
+
+import type { Resume } from '../data/types';
+import { chrome } from '../lib/chrome';
+import { withBase } from '../lib/paths';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Profile from '../components/Profile.astro';
+import Timeline from '../components/Timeline.astro';
+import Projects from '../components/Projects.astro';
+import Awards from '../components/Awards.astro';
+import TagGroups from '../components/TagGroups.astro';
+import Languages from '../components/Languages.astro';
+import Contact from '../components/Contact.astro';
+
+interface Props {
+  resume: Resume;
+  /** Page path relative to the deployment base, e.g. `en/`. Used for canonical URLs. */
+  path: string;
+}
+
+const { resume, path } = Astro.props;
+const text = chrome[resume.lang];
+const { ui, person } = resume;
+
+const site = Astro.site ?? new URL('https://dannyzhou2004.github.io');
+const canonical = new URL(withBase(path), site).href;
+const alternateEn = new URL(withBase('en/'), site).href;
+const alternateZh = new URL(withBase('zh/'), site).href;
+
+const zhName = person.nameZh?.trim() ?? '';
+/** Chinese page leads with 周悦杨; English page leads with the Latin name. */
+const displayName = resume.lang === 'zh' ? zhName || person.name : person.name;
+const altName = displayName === person.name ? zhName : person.name;
+const year = new Date().getFullYear();
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: displayName,
+  alternateName: altName || undefined,
+  jobTitle: person.title,
+  description: person.tagline,
+  url: canonical,
+  email: person.emails[0] ? `mailto:${person.emails[0]}` : undefined,
+  telephone: person.phones[0],
+  address: person.location ? { '@type': 'PostalAddress', addressLocality: person.location } : undefined,
+  knowsLanguage: resume.languages.map((language) => language.name),
+  sameAs: person.links.map((link) => link.href),
+};
+---
+
+<!doctype html>
+<html lang={resume.htmlLang} data-lang={resume.lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{resume.meta.title}</title>
+    <meta name="description" content={resume.meta.description} />
+    <meta name="author" content={displayName} />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="canonical" href={canonical} />
+
+    <link rel="alternate" hreflang="en" href={alternateEn} />
+    <link rel="alternate" hreflang="zh-CN" href={alternateZh} />
+    <link rel="alternate" hreflang="x-default" href={alternateEn} />
+
+    <link rel="icon" type="image/svg+xml" href={withBase('favicon.svg')} />
+    <meta name="theme-color" content="#f6f2ea" />
+    <meta name="color-scheme" content="light" />
+
+    <meta property="og:type" content="profile" />
+    <meta property="og:site_name" content={displayName} />
+    <meta property="og:title" content={resume.meta.title} />
+    <meta property="og:description" content={resume.meta.description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content={resume.meta.ogLocale} />
+    <meta property="og:locale:alternate" content={resume.lang === 'en' ? 'zh_CN' : 'en_GB'} />
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={resume.meta.title} />
+    <meta name="twitter:description" content={resume.meta.description} />
+
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    <script is:inline>
+      /* Enables the scroll-reveal styles. If the deferred module never loads,
+         the safety net below still shows every section after 2.5s. */
+      document.documentElement.classList.add('js');
+      window.setTimeout(function () {
+        if (document.documentElement.hasAttribute('data-ready')) return;
+        var items = document.querySelectorAll('[data-reveal]');
+        for (var i = 0; i < items.length; i++) items[i].classList.add('is-revealed');
+      }, 2500);
+    </script>
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">{text.skipLink}</a>
+
+    <Header resume={resume} />
+
+    <main id="main" tabindex="-1">
+      <Hero resume={resume} />
+      <Profile resume={resume} />
+      <Timeline
+        resume={resume}
+        index="02"
+        sectionId="education"
+        title={ui.sections.education}
+        entries={resume.education}
+      />
+      <Timeline
+        resume={resume}
+        index="03"
+        sectionId="experience"
+        title={ui.sections.experience}
+        entries={resume.experience}
+      />
+      <Projects resume={resume} />
+      <Awards resume={resume} />
+      <TagGroups
+        index="06"
+        sectionId="skills"
+        title={ui.sections.skills}
+        groups={resume.skills}
+      />
+      <TagGroups
+        index="07"
+        sectionId="coursework"
+        title={ui.sections.coursework}
+        groups={resume.coursework}
+        size="sm"
+      />
+      <Languages resume={resume} />
+      <Contact resume={resume} />
+    </main>
+
+    <footer class="site-footer">
+      <div class="shell footer-inner">
+        <p>{ui.footer}</p>
+        <p>© {year} {displayName}</p>
+      </div>
+    </footer>
+
+    <script>
+      import '../scripts/main';
+    </script>
+  </body>
+</html>

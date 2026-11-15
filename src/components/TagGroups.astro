@@ -1,0 +1,35 @@
+---
+import SectionHead from './SectionHead.astro';
+
+interface Props {
+  index: string;
+  sectionId: string;
+  title: string;
+  groups: { group: string; items: string[] }[];
+  /** `sm` renders the smaller chip variant (coursework). */
+  size?: 'md' | 'sm';
+}
+
+const { index, sectionId, title, groups, size = 'md' } = Astro.props;
+const headingId = `${sectionId}-heading`;
+---
+
+<section class="section" id={sectionId} aria-labelledby={headingId}>
+  <div class="shell">
+    <SectionHead index={index} id={headingId} title={title} />
+    <div class="tag-groups">
+      {
+        groups.map((group, groupIndex) => (
+          <div class="tag-group" data-reveal style={`--i:${groupIndex}`}>
+            <h3 class="tag-group-label">{group.group}</h3>
+            <ul class="tags" role="list">
+              {group.items.map((item) => (
+                <li class:list={['tag', size === 'sm' && 'tag--sm']}>{item}</li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,98 @@
+---
+import type { Resume } from '../data/types';
+import SectionHead from './SectionHead.astro';
+
+interface Props {
+  resume: Resume;
+}
+
+const { resume } = Astro.props;
+const { person, ui } = resume;
+
+const primaryEmail = person.emails[0] ?? '';
+const telHref = (phone: string): string => `tel:${phone.replace(/[^+\d]/g, '')}`;
+---
+
+<section class="section" id="contact" aria-labelledby="contact-heading">
+  <div class="shell">
+    <SectionHead index="09" id="contact-heading" title={ui.sections.contact} />
+
+    <div class="contact-grid">
+      <div class="contact-main">
+        <ul class="contact-links" role="list">
+          {
+            person.emails.map((email) => (
+              <li>
+                <a class="btn" href={`mailto:${email}`}>
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                    <rect x="3" y="5" width="18" height="14" rx="1.5" />
+                    <path d="m3.4 7 8.6 5.7L20.6 7" />
+                  </svg>
+                  <span>{email}</span>
+                </a>
+              </li>
+            ))
+          }
+          {
+            person.phones.map((phone) => (
+              <li>
+                <a class="btn btn--ghost" href={telHref(phone)}>
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                    <path d="M6.6 3.5H4.9A1.9 1.9 0 0 0 3 5.5c.4 7.4 6.6 13.6 14 14a1.9 1.9 0 0 0 2-1.9v-1.7a1.9 1.9 0 0 0-1.6-1.9l-2.2-.4a1.9 1.9 0 0 0-1.8.6l-.7.8a12.7 12.7 0 0 1-5.6-5.6l.8-.7a1.9 1.9 0 0 0 .6-1.8l-.4-2.2a1.9 1.9 0 0 0-1.5-1.2Z" />
+                  </svg>
+                  <span>{phone}</span>
+                </a>
+              </li>
+            ))
+          }
+          {
+            person.links.map((link) => (
+              <li>
+                <a class="btn btn--ghost" href={link.href} rel="noopener noreferrer">
+                  <span>{link.label}</span>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+
+        <p class="copy-status" role="status" aria-live="polite" data-copy-status></p>
+      </div>
+
+      <div class="contact-utility">
+        {
+          primaryEmail && (
+            <button
+              class="btn btn--ghost"
+              type="button"
+              data-copy={primaryEmail}
+              data-copied={ui.labels.copied}
+              aria-label={ui.labels.copyEmail}
+            >
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                <rect x="9" y="9" width="11" height="11" rx="1.5" />
+                <path d="M6 15H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1v1" />
+              </svg>
+              <span>{ui.labels.copyEmail}</span>
+            </button>
+          )
+        }
+        <button class="btn btn--ghost" type="button" data-print>
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+            <path d="M7 8V3.5h10V8" />
+            <rect x="4" y="8" width="16" height="8" rx="1.5" />
+            <path d="M7 16h10v4.5H7z" />
+          </svg>
+          <span>{ui.labels.print}</span>
+        </button>
+        <a class="btn btn--ghost to-top" href="#top">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+            <path d="M12 19.5V5" />
+            <path d="m6 11 6-6 6 6" />
+          </svg>
+          <span>{ui.labels.backToTop}</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

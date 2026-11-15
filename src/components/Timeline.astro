@@ -1,0 +1,55 @@
+---
+import type { EducationEntry, ExperienceEntry, Resume } from '../data/types';
+import { rich } from '../lib/rich';
+import SectionHead from './SectionHead.astro';
+
+interface Props {
+  resume: Resume;
+  index: string;
+  sectionId: string;
+  title: string;
+  entries: (EducationEntry | ExperienceEntry)[];
+}
+
+const { resume, index, sectionId, title, entries } = Astro.props;
+const headingId = `${sectionId}-heading`;
+
+const rows = entries.map((entry) => ({
+  org: entry.org,
+  sub: entry.orgSub,
+  place: entry.place,
+  period: entry.period,
+  line: 'degree' in entry ? entry.degree : entry.role,
+  bullets: entry.bullets,
+}));
+---
+
+<section class="section" id={sectionId} aria-labelledby={headingId}>
+  <div class="shell">
+    <SectionHead index={index} id={headingId} title={title} />
+    <ol class="timeline" role="list">
+      {
+        rows.map((row, rowIndex) => (
+          <li class="entry" data-reveal style={`--i:${rowIndex}`}>
+            <div class="entry-aside">
+              <p class="entry-period">{row.period}</p>
+              <p class="entry-place">{row.place}</p>
+            </div>
+            <div class="entry-body">
+              <h3 class="entry-org">{row.org}</h3>
+              {row.sub && <p class="entry-sub">{row.sub}</p>}
+              <p class="entry-role">{row.line}</p>
+              {row.bullets.length > 0 && (
+                <ul class="bullets" role="list">
+                  {row.bullets.map((bullet) => (
+                    <li set:html={rich(bullet)} />
+                  ))}
+                </ul>
+              )}
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>

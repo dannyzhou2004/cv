@@ -1,0 +1,121 @@
+---
+import type { Resume } from '../data/types';
+import { chrome } from '../lib/chrome';
+import { langUrl } from '../lib/paths';
+
+interface Props {
+  resume: Resume;
+}
+
+const { resume } = Astro.props;
+const { ui, person, music } = resume;
+const text = chrome[resume.lang];
+const home = langUrl(resume.lang);
+
+const navItems = [
+  { id: 'about', label: ui.nav.about },
+  { id: 'education', label: ui.nav.education },
+  { id: 'experience', label: ui.nav.experience },
+  { id: 'projects', label: ui.nav.projects },
+  { id: 'honours', label: ui.nav.honours },
+  { id: 'skills', label: ui.nav.skills },
+  { id: 'languages', label: ui.nav.languages },
+];
+
+/**
+ * Nothing is re-hosted on GitHub Pages: the panel mounts Bilibili's official
+ * player on demand, so playback (and the rights question) stays on Bilibili.
+ */
+const hasMusic = Boolean(music?.bvid);
+const playerSrc = hasMusic
+  ? `https://player.bilibili.com/player.html?bvid=${music!.bvid}&autoplay=1&danmaku=0&high_quality=0&muted=0`
+  : '';
+---
+
+<header class="site-header" data-header>
+  <div class="shell header-inner">
+    <a class="brand" href={home} aria-label={`${person.name} — ${text.home}`}>
+      <span class="brand-mark" aria-hidden="true">ZY</span>
+    </a>
+
+    <nav class="nav" id="site-nav" data-nav aria-label={text.primaryNav}>
+      <ul role="list">
+        {navItems.map((item) => (
+          <li>
+            <a href={`#${item.id}`} data-spy>{item.label}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <div class="header-tools">
+      {
+        hasMusic && (
+          <div class="music-wrap">
+            <button
+              class="music"
+              type="button"
+              data-music
+              data-label-open={ui.labels.openMusic}
+              data-label-close={ui.labels.closeMusic}
+              aria-expanded="false"
+              aria-controls="music-panel"
+              aria-label={ui.labels.openMusic}
+              title={ui.labels.openMusic}
+            >
+              <span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+            </button>
+
+            <div
+              class="music-panel"
+              id="music-panel"
+              data-music-panel
+              role="dialog"
+              aria-label={music.title || ui.labels.openMusic}
+              hidden
+            >
+              <div class="music-panel-head">
+                <span class="music-panel-title mono">{music.title}</span>
+                <button
+                  class="music-panel-close"
+                  type="button"
+                  data-music-close
+                  aria-label={ui.labels.closeMusic}
+                  title={ui.labels.closeMusic}
+                >
+                  ×
+                </button>
+              </div>
+
+              <div class="music-frame" data-music-frame data-src={playerSrc}></div>
+              <p class="music-hint">{ui.labels.musicHint}</p>
+              <a class="music-source" href={music.url} target="_blank" rel="noopener noreferrer">
+                {ui.labels.openSource}
+              </a>
+              {music.credit && <p class="music-credit mono">{music.credit}</p>}
+            </div>
+          </div>
+        )
+      }
+
+      <div class="lang-toggle" role="group" aria-label={ui.labels.switchLanguage}>
+        <a href={langUrl('en')} hreflang="en" lang="en" data-set-lang="en" aria-current={resume.lang === 'en' ? 'true' : undefined}>EN</a>
+        <a href={langUrl('zh')} hreflang="zh-CN" lang="zh-CN" data-set-lang="zh" aria-current={resume.lang === 'zh' ? 'true' : undefined}>中文</a>
+      </div>
+
+      <button
+        class="nav-toggle"
+        type="button"
+        data-nav-toggle
+        data-label-open={ui.labels.menu}
+        data-label-close={ui.labels.close}
+        aria-expanded="false"
+        aria-controls="site-nav"
+        aria-label={ui.labels.menu}
+      >
+        <span class="bars" aria-hidden="true"><i></i><i></i></span>
+        <span data-nav-label>{ui.labels.menu}</span>
+      </button>
+    </div>
+  </div>
+</header>

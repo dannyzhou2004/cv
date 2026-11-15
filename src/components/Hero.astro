@@ -1,0 +1,99 @@
+---
+import type { Resume } from '../data/types';
+
+interface Props {
+  resume: Resume;
+}
+
+const { resume } = Astro.props;
+const { person, stats } = resume;
+
+const zhName = person.nameZh?.trim() ?? '';
+/** Chinese page leads with the hanzi name; the English page keeps the Latin one. */
+const displayName = resume.lang === 'zh' ? zhName || person.name : person.name;
+/** The other script shown underneath, so both names are always present. */
+const altName = displayName === person.name ? zhName : person.name;
+/** Latin-only names keep the editorial serif. */
+const isLatinName = /^[\x20-\x7E\u00A0-\u024F]+$/.test(displayName);
+
+/** Editorial eyebrow: the institution line (falls back to the location). */
+const eyebrow = resume.education[0]?.orgSub?.trim() || person.location;
+
+const telHref = (phone: string): string => `tel:${phone.replace(/[^+\d]/g, '')}`;
+---
+
+<section class="hero" id="top" aria-labelledby="hero-name">
+  <div class="shell">
+    <div class="hero-grid">
+      <div class="hero-main">
+        <p class="hero-kicker mono" data-reveal>{eyebrow}</p>
+        <h1 class="hero-name" id="hero-name" data-latin={isLatinName ? 'true' : 'false'} data-reveal style="--i:1">
+          {displayName}
+        </h1>
+        {altName && <p class="hero-name-alt mono" data-reveal style="--i:2">{altName}</p>}
+        <p class="hero-title" data-reveal style="--i:2">{person.title}</p>
+      </div>
+
+      <div class="hero-side">
+        <p class="hero-tagline" data-reveal style="--i:3">{person.tagline}</p>
+        <ul class="chips" role="list" data-reveal style="--i:4">
+          {
+            person.emails.map((email) => (
+              <li>
+                <a class="chip" href={`mailto:${email}`}>
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                    <rect x="3" y="5" width="18" height="14" rx="1.5" />
+                    <path d="m3.4 7 8.6 5.7L20.6 7" />
+                  </svg>
+                  <span>{email}</span>
+                </a>
+              </li>
+            ))
+          }
+          {
+            person.phones.map((phone) => (
+              <li>
+                <a class="chip" href={telHref(phone)}>
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                    <path d="M6.6 3.5H4.9A1.9 1.9 0 0 0 3 5.5c.4 7.4 6.6 13.6 14 14a1.9 1.9 0 0 0 2-1.9v-1.7a1.9 1.9 0 0 0-1.6-1.9l-2.2-.4a1.9 1.9 0 0 0-1.8.6l-.7.8a12.7 12.7 0 0 1-5.6-5.6l.8-.7a1.9 1.9 0 0 0 .6-1.8l-.4-2.2a1.9 1.9 0 0 0-1.5-1.2Z" />
+                  </svg>
+                  <span>{phone}</span>
+                </a>
+              </li>
+            ))
+          }
+          {
+            person.links.map((link) => (
+              <li>
+                <a class="chip" href={link.href} rel="noopener noreferrer">
+                  <span>{link.label}</span>
+                </a>
+              </li>
+            ))
+          }
+          <li>
+            <span class="chip chip--static">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                <path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11Z" />
+                <circle cx="12" cy="10" r="2.5" />
+              </svg>
+              <span>{person.location}</span>
+            </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <ul class="stats" role="list">
+      {
+        stats.map((stat, index) => (
+          <li class="stat" data-reveal style={`--i:${index + 5}`}>
+            <span class="stat-value">{stat.value}</span>
+            <span class="stat-label">{stat.label}</span>
+            {stat.note && <span class="stat-note">{stat.note}</span>}
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

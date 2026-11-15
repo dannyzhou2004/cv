@@ -1,0 +1,51 @@
+---
+import type { Resume } from '../data/types';
+import { chrome } from '../lib/chrome';
+import SectionHead from './SectionHead.astro';
+
+interface Props {
+  resume: Resume;
+}
+
+const { resume } = Astro.props;
+const text = chrome[resume.lang];
+const { ui, education, skills, languages } = resume;
+
+const programme = education[0];
+const exchange = education[1];
+
+/** Profile = a compact dossier of facts that already exist in the data model. */
+const facts = [
+  { key: text.facts.programme, value: programme?.degree },
+  {
+    key: text.facts.institution,
+    value: programme ? [programme.org, programme.orgSub].filter(Boolean).join(' · ') : undefined,
+  },
+  { key: text.facts.period, value: programme?.period },
+  {
+    key: text.facts.exchange,
+    value: exchange ? [exchange.org, exchange.period].filter(Boolean).join(' · ') : undefined,
+  },
+  { key: text.facts.focus, value: skills.map((skill) => skill.group).join(' · ') },
+  {
+    key: ui.sections.languages,
+    value: languages.map((language) => `${language.name} — ${language.level}`).join(' · '),
+  },
+].filter((fact): fact is { key: string; value: string } => Boolean(fact.value && fact.value.trim() !== ''));
+---
+
+<section class="section" id="about" aria-labelledby="about-heading">
+  <div class="shell">
+    <SectionHead index="01" id="about-heading" title={ui.sections.about} />
+    <dl class="facts">
+      {
+        facts.map((fact, index) => (
+          <div class="fact" data-reveal style={`--i:${index}`}>
+            <dt class="fact-key">{fact.key}</dt>
+            <dd class="fact-value">{fact.value}</dd>
+          </div>
+        ))
+      }
+    </dl>
+  </div>
+</section>
