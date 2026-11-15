@@ -53,7 +53,7 @@ export const en: Resume = {
     nameZh: '周悦杨',
     title: 'B.Eng. Electrical Engineering and Automation · Sino-German Joint Program',
     tagline:
-      'Power electronics, drive control and industrial automation — studying between Shanghai and Hamburg, after a full AFS exchange year at a Swiss grammar school.',
+      'From electrical engineering and automation towards robotics — bringing power electronics, motion control and embedded systems together.',
     location: 'Guangdong, China · Shanghai / Hamburg',
     phones: [],
     emails: ['Dannyzhou0218@gmail.com', '1532319620@qq.com'],
@@ -72,7 +72,7 @@ export const en: Resume = {
       org: 'University of Shanghai for Science and Technology',
       orgSub: 'Shanghai-Hamburg College (SHC)',
       place: 'Shanghai, China',
-      degree: 'B.Eng. Electrical Engineering and Automation — Sino-German Joint Program',
+      degree: 'B.Eng. Electrical Engineering and Automation — Sino-German Joint Program (in progress; expected graduation Jul 2027)',
       period: 'Sep 2023 — Jul 2027 (expected)',
       bullets: [
         '**Ranked 1st of 51** · weighted average **91.74/100** · GPA **4.0/4.5** (top band) · **26% of credits taught in German**',
@@ -93,8 +93,8 @@ export const en: Resume = {
       orgSub: 'Foshan, Guangdong',
       place: 'Foshan, China',
       degree: 'Secondary education',
-      period: '2019 — 2023',
-      bullets: [],
+      period: 'Sep 2019 — Jun 2023',
+      bullets: ['Class monitor and head of the sports department'],
       subEntries: [
         {
           period: 'Sep 2021 — Jun 2022',
@@ -109,7 +109,7 @@ export const en: Resume = {
   experience: [
     {
       org: 'Stucke Elektronik GmbH',
-      orgSub: 'stuckeGROUP · Hamburg · Praxissemester',
+      orgSub: 'stuckeGROUP · Hamburg · Praxissemester · DAAD full scholarship',
       place: 'Hamburg, Germany',
       role: 'Hardware Engineer',
       period: 'Nov 2026 — Mar 2027',
@@ -126,8 +126,7 @@ export const en: Resume = {
       role: 'Assistant Electrical Engineer',
       period: 'Jun 2025 — Aug 2025',
       bullets: [
-        'Prepared the **SRtP (Safe Return to Port)** documentation framework for the newbuilding project',
-        "Prepared the **SRtP documentation for the electrical part of the ship's machinery installation**, in line with IMO safe-return-to-port requirements",
+        'Compiled the **SRtP (Safe Return to Port) documentation framework** for the newbuilding project (Cook Strait Ferry Replacement Programme), covering both the **electrical** and **machinery-electrical** parts in line with IMO requirements',
       ],
     },
   ],
@@ -223,6 +222,19 @@ export const en: Resume = {
     {
       group: 'Programming & mathematics',
       items: ['Advanced C Programming (German)', 'Advanced Mathematics A(1)(2)', 'Linear Algebra B', 'Probability & Statistics B'],
+    },
+    {
+      group: 'Courses scored 90+',
+      items: [
+        'Programming Fundamentals (German) — 90',
+        'Complex Analysis & Integral Transforms — 91',
+        'Mechanical Engineering Basics — 91',
+        'Engineering Skills Training (1) — 91',
+        'Engineering Skills Training (2) — 96',
+        'Technical English (3) — 97',
+        'Technical English (4) — 98',
+        'Project Management — 100',
+      ],
     },
   ],
   languages: [

@@ -53,7 +53,7 @@ export const zh: Resume = {
     nameZh: '周悦杨',
     title: '电气工程及其自动化（工学学士）· 中德合作项目',
     tagline:
-      '专注电力电子、拖动控制与工业自动化——在上海与汉堡之间求学；高中阶段曾赴瑞士交换一整年（AFS）。',
+      '从电气工程与自动化出发，目标转向机器人方向——把电力电子、运动控制与嵌入式系统串成一条工程能力线。',
     location: '中国广东 · 上海 / 汉堡',
     phones: [],
     emails: ['Dannyzhou0218@gmail.com', '1532319620@qq.com'],
@@ -72,7 +72,7 @@ export const zh: Resume = {
       org: '上海理工大学（USST）',
       orgSub: '中德国际学院（SHC）',
       place: '上海，中国',
-      degree: '电气工程及其自动化 工学学士 · 中德合作项目',
+      degree: '电气工程及其自动化 工学学士 · 中德合作项目（本科在读，预计 2027.07 毕业）',
       period: '2023.09 — 2027.07（预计）',
       bullets: [
         '**专业排名 1/51** · 加权平均分 **91.74/100** · GPA **4.0/4.5**（最高档）· **德语授课学分占总学分 26%**',
@@ -93,8 +93,8 @@ export const zh: Resume = {
       orgSub: 'Foshan No. 1 High School',
       place: '佛山，中国',
       degree: '中学阶段',
-      period: '2019 — 2023',
-      bullets: [],
+      period: '2019.09 — 2023.06',
+      bullets: ['担任班长、体育部部长'],
       subEntries: [
         {
           period: '2021.09 — 2022.06',
@@ -109,7 +109,7 @@ export const zh: Resume = {
   experience: [
     {
       org: 'Stucke Elektronik GmbH',
-      orgSub: 'stuckeGROUP · 汉堡 · 必修实习学期',
+      orgSub: 'stuckeGROUP · 汉堡 · 必修实习学期 · DAAD 全额奖学金资助',
       place: '汉堡，德国',
       role: '硬件工程师',
       period: '2026.11 — 2027.03',
@@ -126,8 +126,7 @@ export const zh: Resume = {
       role: '助理电气工程师',
       period: '2025.06 — 2025.08',
       bullets: [
-        '为新造船项目搭建 **SRtP（安全返港）** 文件体系框架',
-        '依据 IMO 安全返港要求，编制**船舶机械装置电气部分的 SRtP 文件**',
+        '为新造船项目（Cook Strait Ferry Replacement Programme）编纂 **SRtP（安全返港）文件体系框架**，覆盖**电气部分**与**轮机电气部分**，符合 IMO 安全返港要求',
       ],
     },
   ],
@@ -217,6 +216,19 @@ export const zh: Resume = {
     {
       group: '编程与数学',
       items: ['高级 C 语言程序设计（德语授课）', '高等数学 A(1)(2)', '线性代数 B', '概率论与数理统计 B'],
+    },
+    {
+      group: '高分课程（90 分以上）',
+      items: [
+        '程序设计基础（德语授课）— 90',
+        '复变函数与积分变换（中德电气）— 91',
+        '机械工程基础（中德电气）— 91',
+        '工程师技能训练（1）— 91',
+        '工程师技能训练（2）— 96',
+        '技术英语（3）— 97',
+        '技术英语（4）— 98',
+        '项目管理 — 100',
+      ],
     },
   ],
   languages: [
