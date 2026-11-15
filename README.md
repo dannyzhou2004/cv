@@ -1,5 +1,8 @@
 # Zhou Yueyang · 个人简历网站
 
+> 线上地址：<https://dannyzhou2004.github.io/cv/> ｜ 仓库：<https://github.com/dannyzhou2004/cv>
+> 中文页 <https://dannyzhou2004.github.io/cv/zh/> · 英文页 <https://dannyzhou2004.github.io/cv/en/>
+
 中英双语静态简历站。Astro 5 + TypeScript，无 UI 框架、无运行时依赖；构建产物是纯静态 HTML/CSS/JS，可直接托管在 GitHub Pages。
 
 ## 技术要点

@@ -167,9 +167,9 @@ push → GitHub Actions（npm ci → astro build → upload-pages-artifact）→
 
 ---
 
-## 9. 实测证据（本机）
+## 9. 实测证据（本机 + 线上）
 
-- **构建**：Astro 5.18.2，`astro build` 成功；4 页（`/`、`/en/`、`/zh/`、`/404.html`），2–3 秒。
+- **线上验收**（`https://dannyzhou2004.github.io/cv/`）：`/cv/`、`/cv/en/`、`/cv/zh/`、`favicon.svg`、`404.html` 全部 **200**；页面引用的 5 个本地资源与 CSS 内 12 个字体文件全部 **200**；浏览器加载无失败请求；B 站播放器 iframe 返回 **200**。
 - **子路径部署**：`BASE_PATH=/cv/` 构建，19 个本地资源引用全部带 `/cv/` 前缀且文件存在；根路径构建同样通过。
 - **姓名/隐私**：en `<h1>` = ZHOU YUEYANG、副标题 周悦杨；zh `<h1>` = 周悦杨、副标题 ZHOU YUEYANG；两页各 1 个 `<h1>`；手机号与 `tel:` 链接均不存在。
 - **B 站播放器**（真实视频 `BV1ta4J6TET9`）：
@@ -218,15 +218,17 @@ gh api -X POST repos/dannyzhou2004/cv/pages -f build_type=workflow
 
 ---
 
-## 12. 最终结论与待确认
+## 12. 最终结论
 
-**技术可行性：通过。** 已完成可运行原型：双语静态构建、姓名双写、手机号下线、B 站播放器接入（真实视频已验证）、Pages Actions 配置、打印样式、无障碍与响应式，均实测通过。
+**技术可行性：通过，且已上线。**
 
-只剩一件需要你确认的事：
+- 线上地址：<https://dannyzhou2004.github.io/cv/>（中文 <https://dannyzhou2004.github.io/cv/zh/>，英文 <https://dannyzhou2004.github.io/cv/en/>）
+- 仓库：<https://github.com/dannyzhou2004/cv>（公开；Actions 构建 + 官方 Pages 部署）
+- 首次部署：Build 与 Deploy 两个 job 均成功，约 1 分钟
 
-**版权**：嵌入 B 站官方播放器属于"分享"，比托管 MP3 规范得多，但仍不等于获得音乐授权；确认可接受，或改用授权音源。
+后续更新：改 `src/data/*.ts` → `git push` → Actions 自动重新构建发布（约 1 分钟）。
 
-确认后按 §10 三步即可上线。仓库建议公开（免费账户的 Pages 不支持私有仓库），站点地址将是 `https://dannyzhou2004.github.io/<仓库名>/`。
+仍需你留意：**版权**。嵌入 B 站官方播放器属于"分享"，比托管 MP3 规范得多，但不等于获得音乐授权；若站点用于商业/正式求职场景，建议换成授权的 production music。
 
 ---
 
