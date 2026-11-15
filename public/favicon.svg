@@ -1,14 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="ZY">
-  <rect width="64" height="64" rx="10" fill="#0a1a2a" />
-  <text
-    x="32"
-    y="38.5"
-    text-anchor="middle"
-    font-family="Georgia, 'Times New Roman', serif"
-    font-size="24"
-    font-weight="600"
-    letter-spacing="1.5"
-    fill="#e8eef5"
-  >ZY</text>
-  <rect x="17" y="44" width="30" height="1.6" fill="#8fc0ee" />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Zhou Yueyang">
+  <rect width="64" height="64" rx="14" fill="#0a1a2a" />
+  <rect x="14" y="20" width="4" height="24" rx="2" fill="#8fc0ee" />
+  <rect x="23" y="14" width="4" height="36" rx="2" fill="#e8eef5" />
+  <rect x="32" y="24" width="4" height="16" rx="2" fill="#8fc0ee" />
+  <rect x="41" y="10" width="4" height="44" rx="2" fill="#e8eef5" />
+  <rect x="50" y="26" width="4" height="12" rx="2" fill="#8fc0ee" />
 </svg>

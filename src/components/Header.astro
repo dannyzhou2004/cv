@@ -8,9 +8,8 @@ interface Props {
 }
 
 const { resume } = Astro.props;
-const { ui, person } = resume;
+const { ui } = resume;
 const text = chrome[resume.lang];
-const home = langUrl(resume.lang);
 
 const navItems = [
   { id: 'about', label: ui.nav.about },
@@ -25,10 +24,6 @@ const navItems = [
 
 <header class="site-header" data-header>
   <div class="shell header-inner">
-    <a class="brand" href={home} aria-label={`${person.name} — ${text.home}`}>
-      <span class="brand-mark" aria-hidden="true">ZY</span>
-    </a>
-
     <nav class="nav" id="site-nav" data-nav aria-label={text.primaryNav}>
       <ul role="list">
         {navItems.map((item) => (

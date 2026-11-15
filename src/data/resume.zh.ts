@@ -126,7 +126,7 @@ export const zh: Resume = {
       role: '助理电气工程师',
       period: '2025.06 — 2025.08',
       bullets: [
-        '为新造船项目（Cook Strait Ferry Replacement Programme）编纂 **SRtP（安全返港）文件体系框架**，覆盖**电气部分**与**轮机电气部分**，符合 IMO 安全返港要求',
+        '为新造船项目编纂 **SRtP（安全返港）文件体系框架**，覆盖**电气部分**与**轮机电气部分**，符合 IMO 安全返港要求',
       ],
     },
   ],

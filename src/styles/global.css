@@ -1425,6 +1425,7 @@ html[lang^='zh'] .award-title {
 }
 
 .header-inner {
+  position: relative;
   padding: 0.55rem 0.9rem 0.55rem 1.05rem;
   border: 1px solid color-mix(in srgb, var(--hair) 76%, transparent);
   border-radius: var(--radius-pill);
@@ -1455,6 +1456,11 @@ html[lang^='zh'] .award-title {
   border-radius: 50%;
   letter-spacing: 0;
   font-size: 0.78rem;
+}
+
+.nav {
+  margin-left: 0;
+  margin-right: auto;
 }
 
 .nav a {
@@ -1761,6 +1767,79 @@ html[lang^='zh'] .award-title {
   }
 }
 
+/* --- secondary text: one size up ----------------------------------------- */
+
+:root {
+  --step--1: clamp(1.1rem, 1.06rem + 0.15vw, 1.18rem);
+}
+
+.nav a {
+  font-size: 1.08rem;
+  letter-spacing: 0.09em;
+}
+
+.stat-label,
+.fact-key,
+.tag-group-label {
+  font-size: 1.06rem;
+  letter-spacing: 0.1em;
+}
+
+.entry-period {
+  font-size: 1.1rem;
+}
+
+.entry-place {
+  font-size: 1.08rem;
+}
+
+.project-badge {
+  font-size: 1.02rem;
+}
+
+.project-meta {
+  font-size: 1.08rem;
+}
+
+.award-year {
+  font-size: 1.1rem;
+}
+
+.tag--sm {
+  font-size: 1.15rem;
+}
+
+.lang-level {
+  font-size: 1.08rem;
+}
+
+.btn {
+  font-size: 1.1rem;
+}
+
+.copy-status {
+  font-size: 1.05rem;
+}
+
+.sec-index {
+  font-size: 1.1rem;
+}
+
+.footer-inner p {
+  font-size: 1rem;
+}
+
+.music-hint {
+  font-size: 0.95rem;
+  max-width: 11rem;
+}
+
+.stat-note,
+.lang-detail,
+.award-detail {
+  font-size: 1.08rem;
+}
+
 /* --- mobile nav panel ----------------------------------------------------- */
 
 @media (max-width: 899px) {
@@ -1780,14 +1859,15 @@ html[lang^='zh'] .award-title {
 
 /* The inline sound hint would wrap inside the narrow mobile pill: float it. */
 @media (max-width: 719px) {
-  .music-wrap {
-    position: relative;
+  .header-tools {
+    margin-inline: auto;
   }
 
   .music-hint {
     position: absolute;
     top: calc(100% + 0.7rem);
-    right: 0;
+    right: 1rem;
+    left: auto;
     max-width: none;
     padding: 0.36rem 0.62rem;
     border: 1px solid var(--hair);

@@ -126,7 +126,7 @@ export const en: Resume = {
       role: 'Assistant Electrical Engineer',
       period: 'Jun 2025 — Aug 2025',
       bullets: [
-        'Compiled the **SRtP (Safe Return to Port) documentation framework** for the newbuilding project (Cook Strait Ferry Replacement Programme), covering both the **electrical** and **machinery-electrical** parts in line with IMO requirements',
+        'Compiled the **SRtP (Safe Return to Port) documentation framework** for a newbuilding project, covering both the **electrical** and **machinery-electrical** parts in line with IMO requirements',
       ],
     },
   ],
