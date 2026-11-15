@@ -70,6 +70,31 @@ function initReveal(): void {
 
 /* --- sticky header state -------------------------------------------------- */
 
+function initProgress(): void {
+  const bar = doc.querySelector<HTMLElement>('[data-progress]');
+  if (!bar) return;
+
+  let ticking = false;
+  const update = (): void => {
+    const max = doc.documentElement.scrollHeight - window.innerHeight;
+    const progress = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+    bar.style.transform = `scaleX(${progress.toFixed(4)})`;
+    ticking = false;
+  };
+
+  window.addEventListener(
+    'scroll',
+    () => {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(update);
+    },
+    { passive: true },
+  );
+  window.addEventListener('resize', update, { passive: true });
+  update();
+}
+
 function initHeaderState(): void {
   const header = doc.querySelector<HTMLElement>('[data-header]');
   if (!header) return;
@@ -426,6 +451,7 @@ ready(() => {
   initLanguage();
   initReveal();
   initHeaderState();
+  initProgress();
   initScrollSpy();
   initNav();
   initMusic();

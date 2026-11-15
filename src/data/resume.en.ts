@@ -53,7 +53,7 @@ export const en: Resume = {
     nameZh: '周悦杨',
     title: 'B.Eng. Electrical Engineering and Automation · Sino-German Joint Program',
     tagline:
-      'From electrical engineering and automation towards robotics — bringing power electronics, motion control and embedded systems together.',
+      'Electrical engineering foundations with a robotics focus — where power electronics, motion control and embedded systems meet.',
     location: 'Guangdong, China · Shanghai / Hamburg',
     phones: [],
     emails: ['Dannyzhou0218@gmail.com', '1532319620@qq.com'],
@@ -121,7 +121,6 @@ export const en: Resume = {
     },
     {
       org: 'Guangdong GSI Marine Technology Research Institute',
-      orgSub: 'Guangzhou Shipyard International (CSSC)',
       place: 'Guangzhou, China',
       role: 'Assistant Electrical Engineer',
       period: 'Jun 2025 — Aug 2025',
@@ -176,7 +175,7 @@ export const en: Resume = {
       year: '2025',
     },
     {
-      title: 'Outstanding Student Scholarship, First Class (×2) & Special Award',
+      title: 'Outstanding Student Scholarship, First Class (multiple times) & Special Award',
       detail: 'University of Shanghai for Science and Technology · German Language Tutor',
     },
   ],

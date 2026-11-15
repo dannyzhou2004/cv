@@ -53,7 +53,7 @@ export const zh: Resume = {
     nameZh: '周悦杨',
     title: '电气工程及其自动化（工学学士）· 中德合作项目',
     tagline:
-      '从电气工程与自动化出发，目标转向机器人方向——把电力电子、运动控制与嵌入式系统串成一条工程能力线。',
+      '以电气工程与自动化为基础，聚焦机器人：电力电子、运动控制与嵌入式系统的交叉实践。',
     location: '中国广东 · 上海 / 汉堡',
     phones: [],
     emails: ['Dannyzhou0218@gmail.com', '1532319620@qq.com'],
@@ -121,7 +121,6 @@ export const zh: Resume = {
     },
     {
       org: '广东广船国际海洋科技研究院',
-      orgSub: '广州船舶国际（CSSC）',
       place: '广州，中国',
       role: '助理电气工程师',
       period: '2025.06 — 2025.08',
@@ -176,7 +175,7 @@ export const zh: Resume = {
       year: '2025',
     },
     {
-      title: '优秀学生奖学金一等奖（×2）及特等奖',
+      title: '优秀学生奖学金一等奖（多次）及特等奖',
       detail: '上海理工大学 · 德语辅导教师',
     },
   ],

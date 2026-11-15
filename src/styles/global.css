@@ -1399,6 +1399,469 @@ html[lang^='zh'] .award-title {
   }
 }
 
+/* ============================================================================
+   v2 — a quieter, more spacious pass (Apple-like: big type, soft cards,
+   floating glass chrome, restrained motion). Same palette, higher polish.
+   ========================================================================== */
+
+:root {
+  --radius-xl: 28px;
+  --radius-lg: 20px;
+  --radius-md: 14px;
+  --radius-pill: 999px;
+  --shadow-soft: 0 1px 2px rgba(16, 19, 24, 0.04), 0 26px 60px -42px rgba(16, 19, 24, 0.38);
+  --shadow-lift: 0 2px 6px rgba(16, 19, 24, 0.05), 0 38px 74px -44px rgba(16, 19, 24, 0.5);
+  --copper-bright: #dd8a55;
+  --on-dark: #f4f0e8;
+}
+
+/* --- floating glass header ------------------------------------------------ */
+
+.site-header {
+  padding-block: 0.7rem;
+  background: transparent;
+  border-bottom: 0;
+  box-shadow: none;
+}
+
+.header-inner {
+  padding: 0.55rem 0.9rem 0.55rem 1.05rem;
+  border: 1px solid color-mix(in srgb, var(--hair) 76%, transparent);
+  border-radius: var(--radius-pill);
+  background: color-mix(in srgb, var(--paper) 74%, #fff);
+  backdrop-filter: blur(20px) saturate(1.35);
+  box-shadow: var(--shadow-soft);
+  transition: background-color 0.4s var(--ease), border-color 0.4s var(--ease), box-shadow 0.4s var(--ease);
+}
+
+@supports not (backdrop-filter: blur(1px)) {
+  .header-inner {
+    background: var(--paper);
+  }
+}
+
+.site-header.is-stuck .header-inner {
+  background: color-mix(in srgb, var(--paper) 90%, #fff);
+  border-color: color-mix(in srgb, var(--hair) 92%, transparent);
+  box-shadow: var(--shadow-lift);
+}
+
+.brand-mark {
+  width: 2.2rem;
+  height: 2.2rem;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  letter-spacing: 0;
+  font-size: 0.78rem;
+}
+
+.nav a {
+  padding: 0.52rem 0.72rem;
+  border-radius: var(--radius-pill);
+}
+
+.nav a::after {
+  display: none;
+}
+
+.nav a:hover,
+.nav a[aria-current='true'] {
+  background: color-mix(in srgb, var(--surface) 75%, transparent);
+  color: var(--ink);
+}
+
+.music,
+.lang-toggle,
+.nav-toggle {
+  border-radius: var(--radius-pill);
+}
+
+.lang-toggle {
+  overflow: hidden;
+}
+
+/* --- hero ----------------------------------------------------------------- */
+
+.hero {
+  position: relative;
+  isolation: isolate;
+  padding-block: clamp(4.2rem, 9.5vw, 8.5rem) clamp(2rem, 4vw, 3rem);
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: -8% -18% auto;
+  height: 82%;
+  z-index: -1;
+  pointer-events: none;
+  filter: blur(24px);
+  background:
+    radial-gradient(46% 56% at 74% 18%, rgba(156, 69, 31, 0.12), transparent 72%),
+    radial-gradient(38% 48% at 12% 0%, rgba(44, 95, 90, 0.1), transparent 74%);
+}
+
+.hero-kicker {
+  margin-bottom: clamp(1.2rem, 3vw, 2rem);
+  letter-spacing: 0.2em;
+}
+
+.hero-name {
+  font-size: clamp(3rem, 8.4vw, 6.1rem);
+  line-height: 0.92;
+  letter-spacing: -0.015em;
+}
+
+.hero-name-alt {
+  margin-top: 0.7rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.34em;
+}
+
+.hero-title {
+  margin-top: clamp(1rem, 2.2vw, 1.6rem);
+  max-width: 40ch;
+  font-family: var(--font-body);
+  font-size: clamp(1.1rem, 1.7vw, 1.4rem);
+  font-style: normal;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.hero-tagline {
+  max-width: 34ch;
+  font-size: clamp(1.15rem, 2.1vw, 1.55rem);
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+/* --- chips + stats card --------------------------------------------------- */
+
+.chip {
+  padding: 0.5rem 0.82rem;
+  border-radius: var(--radius-pill);
+  background: color-mix(in srgb, var(--surface) 86%, transparent);
+}
+
+.stats {
+  margin-top: clamp(2.6rem, 5vw, 4.2rem);
+  padding: clamp(1.3rem, 3vw, 2.2rem);
+  border: 1px solid color-mix(in srgb, var(--hair) 78%, transparent);
+  border-radius: var(--radius-lg);
+  background: color-mix(in srgb, var(--surface) 92%, transparent);
+  box-shadow: var(--shadow-soft);
+}
+
+.stat {
+  padding: 0 0 0 clamp(0.9rem, 2vw, 1.5rem);
+  border-left: 1px solid var(--hair);
+}
+
+.stat:first-child {
+  padding-left: 0;
+  border-left: 0;
+}
+
+.stat-value {
+  font-size: clamp(2.1rem, 4.2vw, 3.2rem);
+  letter-spacing: -0.02em;
+}
+
+.stat-label {
+  margin-top: 0.7rem;
+}
+
+/* --- section frame -------------------------------------------------------- */
+
+.section {
+  padding-block: clamp(4rem, 8vw, 7rem);
+  border-top: 1px solid color-mix(in srgb, var(--hair) 70%, transparent);
+}
+
+.sec-head {
+  margin-bottom: clamp(2rem, 4vw, 3.2rem);
+}
+
+.sec-title {
+  font-size: clamp(2rem, 4.6vw, 3.2rem);
+  font-weight: 500;
+  letter-spacing: -0.035em;
+}
+
+.sec-index {
+  font-size: 0.8rem;
+}
+
+.sec-rule {
+  background: linear-gradient(90deg, color-mix(in srgb, var(--hair) 95%, transparent), transparent);
+}
+
+/* --- entries: soft hover cards ------------------------------------------- */
+
+.entry {
+  padding: clamp(1rem, 2.4vw, 1.6rem);
+  margin-inline: clamp(-1.6rem, -2.4vw, -1rem);
+  border-radius: var(--radius-lg);
+  transition: background-color 0.4s var(--ease), box-shadow 0.4s var(--ease);
+}
+
+@media (hover: hover) {
+  .entry:hover {
+    background: color-mix(in srgb, var(--surface) 72%, transparent);
+    box-shadow: var(--shadow-soft);
+  }
+}
+
+/* --- projects ------------------------------------------------------------- */
+
+.project {
+  padding: clamp(1.6rem, 3.4vw, 2.6rem);
+  border: 1px solid color-mix(in srgb, var(--hair) 74%, transparent);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.5s var(--ease), box-shadow 0.5s var(--ease);
+}
+
+.project::before {
+  display: none;
+}
+
+@media (hover: hover) {
+  .project:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lift);
+  }
+}
+
+/* --- tags ----------------------------------------------------------------- */
+
+.tag,
+.tag--sm {
+  border-radius: var(--radius-pill);
+  padding: 0.4rem 0.75rem;
+}
+
+/* --- contact: dark rounded panel ----------------------------------------- */
+
+#contact {
+  border-top: 0;
+  padding-block: clamp(3rem, 6vw, 5rem) clamp(3rem, 6vw, 5rem);
+}
+
+#contact .shell {
+  padding: clamp(2rem, 5.5vw, 4rem);
+  border-radius: var(--radius-xl);
+  color: var(--on-dark);
+  background:
+    radial-gradient(120% 150% at 0% 0%, #1b2028 0%, #101318 52%, #0c0f13 100%);
+  box-shadow: var(--shadow-lift);
+}
+
+#contact .sec-title {
+  color: var(--on-dark);
+}
+
+#contact .sec-index {
+  color: var(--copper-bright);
+}
+
+#contact .sec-rule {
+  background: linear-gradient(90deg, rgba(244, 240, 232, 0.28), transparent);
+}
+
+#contact .btn {
+  background: var(--on-dark);
+  border-color: var(--on-dark);
+  color: #101318;
+}
+
+#contact .btn--ghost {
+  background: transparent;
+  border-color: rgba(244, 240, 232, 0.3);
+  color: var(--on-dark);
+}
+
+#contact .btn--ghost svg {
+  stroke: var(--copper-bright);
+}
+
+@media (hover: hover) {
+  #contact .btn:hover {
+    background: var(--copper-bright);
+    border-color: var(--copper-bright);
+    color: #101318;
+  }
+
+  #contact .btn--ghost:hover {
+    background: rgba(244, 240, 232, 0.1);
+    border-color: var(--copper-bright);
+    color: var(--on-dark);
+  }
+}
+
+#contact .copy-status {
+  color: var(--copper-bright);
+}
+
+/* --- footer + progress ---------------------------------------------------- */
+
+.site-footer {
+  padding-block: 2rem 3rem;
+  border-top: 1px solid color-mix(in srgb, var(--hair) 60%, transparent);
+}
+
+.scroll-progress {
+  position: fixed;
+  inset: 0 0 auto;
+  height: 2px;
+  z-index: 70;
+  pointer-events: none;
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  background: linear-gradient(90deg, var(--copper), var(--verd));
+}
+
+/* --- softer reveal -------------------------------------------------------- */
+
+.js [data-reveal] {
+  transform: translateY(22px);
+  filter: blur(6px);
+  transition:
+    opacity 0.8s var(--ease),
+    transform 0.8s var(--ease),
+    filter 0.8s var(--ease);
+}
+
+.js [data-reveal].is-revealed {
+  filter: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js [data-reveal],
+  .js [data-reveal].is-revealed {
+    filter: none;
+    transition: none;
+  }
+}
+
+/* --- mobile nav panel ----------------------------------------------------- */
+
+@media (max-width: 899px) {
+  .site-header.is-nav-open .nav {
+    top: calc(100% + 0.45rem);
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    width: min(calc(100% - 2 * var(--gutter)), var(--max));
+    padding: 0.6rem 1rem 0.9rem;
+    border: 1px solid var(--hair);
+    border-radius: var(--radius-lg);
+    background: color-mix(in srgb, var(--paper) 96%, #fff);
+    box-shadow: var(--shadow-lift);
+  }
+}
+
+/* The inline sound hint would wrap inside the narrow mobile pill: float it. */
+@media (max-width: 719px) {
+  .music-wrap {
+    position: relative;
+  }
+
+  .music-hint {
+    position: absolute;
+    top: calc(100% + 0.7rem);
+    right: 0;
+    max-width: none;
+    padding: 0.36rem 0.62rem;
+    border: 1px solid var(--hair);
+    border-radius: var(--radius-pill);
+    background: color-mix(in srgb, var(--surface) 94%, transparent);
+    box-shadow: var(--shadow-soft);
+    white-space: nowrap;
+  }
+}
+
+@media print {
+  .scroll-progress {
+    display: none !important;
+  }
+
+  .js [data-reveal],
+  .js [data-reveal].is-revealed {
+    filter: none !important;
+  }
+
+  .hero::before {
+    display: none !important;
+  }
+
+  .entry {
+    padding: 0 !important;
+    margin-inline: 0 !important;
+    gap: 2pt !important;
+    box-shadow: none !important;
+  }
+
+  .project {
+    transform: none !important;
+  }
+
+  /* The v2 spacing is screen-only: tighten the printed page back up. */
+  .timeline,
+  .tag-groups,
+  .langs,
+  .projects {
+    gap: 9pt !important;
+  }
+
+  .bullets {
+    gap: 2pt !important;
+    margin-top: 4pt !important;
+  }
+
+  .sec-head {
+    margin-bottom: 5pt !important;
+  }
+
+  .stats {
+    margin-top: 6pt !important;
+    padding: 0 !important;
+    border: 0 !important;
+    box-shadow: none !important;
+  }
+
+  .stat {
+    padding: 6pt 8pt 0 0 !important;
+    border-left: 0 !important;
+  }
+
+  #contact {
+    padding-block: 6pt !important;
+  }
+
+  #contact .shell {
+    padding: 0 !important;
+    border-radius: 0 !important;
+    background: #fff !important;
+    color: #000 !important;
+    box-shadow: none !important;
+  }
+
+  #contact .sec-title,
+  #contact .sec-index {
+    color: #000 !important;
+  }
+
+  #contact .btn,
+  #contact .btn--ghost {
+    background: transparent !important;
+    border: 0 !important;
+    color: #000 !important;
+  }
+}
+
 /* --- print ---------------------------------------------------------------- */
 
 @media print {
