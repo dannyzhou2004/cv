@@ -172,14 +172,33 @@ function initNav(): void {
  * The track starts on its own, but quietly: `play()` from 0, then a slow
  * quadratic ramp to a low target volume, so it grows in instead of blasting.
  *
- * Browsers with a strict autoplay policy reject audible `play()` on first
- * visit. Fallback: autoplay muted (allowed), show a one-line hint, and on the
- * very first interaction unmute and run the same ramp — no sudden jump.
+ * Browsers block audible autoplay until the page has "user activation".
+ * Scrolling is NOT activation (per spec), so a wheel event alone cannot unlock
+ * sound; what it can do is make an already-rolling muted track audible. That is
+ * why the trigger list below mixes wheel/touch scroll with click/key: whichever
+ * the visitor uses first, the music fades in from zero.
  */
 const MUSIC_TARGET_VOLUME = 0.42;
 const MUSIC_FADE_IN_MS = 7000;
 const MUSIC_FADE_OUT_MS = 900;
 const MUSIC_START_DELAY_MS = 900;
+
+/** Inputs that show the visitor is engaging with the page. */
+const MUSIC_INTENT_EVENTS: ReadonlyArray<[string, AddEventListenerOptions]> = [
+  ['wheel', { capture: true, passive: true }],
+  ['touchmove', { capture: true, passive: true }],
+  ['pointerdown', { capture: true }],
+  ['keydown', { capture: true }],
+];
+
+/**
+ * Only these count as "user activation" per the HTML spec. Scrolling does not,
+ * so when playback has not started at all we must wait for a click/key press.
+ */
+const MUSIC_ACTIVATION_EVENTS: ReadonlyArray<[string, AddEventListenerOptions]> = [
+  ['pointerdown', { capture: true }],
+  ['keydown', { capture: true }],
+];
 
 function initMusic(): void {
   const audio = doc.querySelector<HTMLAudioElement>('[data-audio]');
@@ -192,7 +211,9 @@ function initMusic(): void {
 
   let playing = false;
   let needsGesture = false;
+  let userPaused = false;
   let fadeId = 0;
+  let unbindIntent: (() => void) | null = null;
 
   const setUi = (): void => {
     button.classList.toggle('is-playing', playing);
@@ -213,6 +234,27 @@ function initMusic(): void {
     }, 60);
   };
 
+  const clearIntent = (): void => {
+    if (!unbindIntent) return;
+    unbindIntent();
+    unbindIntent = null;
+  };
+
+  const bindIntent = (
+    handler: EventListener,
+    events: ReadonlyArray<[string, AddEventListenerOptions]> = MUSIC_INTENT_EVENTS,
+  ): void => {
+    clearIntent();
+    for (const [type, options] of events) {
+      window.addEventListener(type, handler, options);
+    }
+    unbindIntent = () => {
+      for (const [type, options] of events) {
+        window.removeEventListener(type, handler, options);
+      }
+    };
+  };
+
   const start = async (audible: boolean): Promise<boolean> => {
     audio.volume = 0;
     audio.muted = !audible;
@@ -223,6 +265,7 @@ function initMusic(): void {
       return false;
     }
     playing = true;
+    userPaused = false;
     setUi();
     if (audible) {
       if (hint) hint.hidden = true;
@@ -234,27 +277,23 @@ function initMusic(): void {
     return true;
   };
 
-  const enableSound = async (): Promise<void> => {
-    if (!needsGesture) return;
+  /** The muted track is already rolling: unmute on the first scroll/click/key. */
+  const enableSound = (): void => {
+    if (userPaused || !needsGesture) return;
     needsGesture = false;
     audio.muted = false;
     audio.volume = 0;
-    if (audio.paused) {
-      try {
-        await audio.play();
-      } catch {
-        return;
-      }
-    }
     if (hint) hint.hidden = true;
     ramp(MUSIC_TARGET_VOLUME, MUSIC_FADE_IN_MS);
-    window.removeEventListener('pointerdown', enableSound, true);
-    window.removeEventListener('keydown', enableSound, true);
+    clearIntent();
   };
 
   button.addEventListener('click', () => {
     if (playing) {
+      userPaused = true;
       playing = false;
+      needsGesture = false;
+      clearIntent();
       ramp(0, MUSIC_FADE_OUT_MS);
       setUi();
       window.setTimeout(() => {
@@ -262,6 +301,7 @@ function initMusic(): void {
       }, MUSIC_FADE_OUT_MS + 80);
       return;
     }
+    userPaused = false;
     audio.muted = false;
     void start(true);
   });
@@ -277,22 +317,24 @@ function initMusic(): void {
 
   void (async () => {
     await new Promise((resolve) => window.setTimeout(resolve, MUSIC_START_DELAY_MS));
-    if (await start(true)) return; // usual case: browser allows sound
+    if (await start(true)) return; // the browser allows sound: fade in
     if (await start(false)) {
-      // Strict autoplay policy: rolling silently until the first interaction.
-      window.addEventListener('pointerdown', enableSound, true);
-      window.addEventListener('keydown', enableSound, true);
+      // Strict policy: rolling silently until the first scroll/click/key.
+      bindIntent(enableSound);
       return;
     }
-    // Even muted autoplay was refused (rare): wait for the first interaction.
+    // Even muted playback was refused (rare): only a real click/key can start it.
     if (hint) hint.hidden = false;
-    const onFirstGesture = (): void => {
-      window.removeEventListener('pointerdown', onFirstGesture, true);
-      window.removeEventListener('keydown', onFirstGesture, true);
-      void start(true);
+    const onFirstIntent = async (): Promise<void> => {
+      clearIntent();
+      userPaused = false;
+      audio.muted = false;
+      if (await start(true)) return;
+      // Still refused (e.g. a key press that the browser ignores): keep waiting.
+      if (hint) hint.hidden = false;
+      bindIntent(onFirstIntent, MUSIC_ACTIVATION_EVENTS);
     };
-    window.addEventListener('pointerdown', onFirstGesture, true);
-    window.addEventListener('keydown', onFirstGesture, true);
+    bindIntent(onFirstIntent, MUSIC_ACTIVATION_EVENTS);
   })();
 }
 
