@@ -53,7 +53,7 @@ export const en: Resume = {
     nameZh: '周悦杨',
     title: 'B.Eng. Electrical Engineering and Automation · Sino-German Joint Program',
     tagline:
-      'Electrical engineering foundations with a robotics focus — where power electronics, motion control and embedded systems meet.',
+      'Electrical engineering foundations with a robotics focus, moving towards embodied intelligence — where power electronics, motion control and embedded systems meet.',
     location: 'Guangdong, China · Shanghai / Hamburg',
     phones: [],
     emails: ['Dannyzhou0218@gmail.com', '1532319620@qq.com'],
@@ -114,7 +114,7 @@ export const en: Resume = {
       role: 'Hardware Engineer',
       period: 'Nov 2026 — Mar 2027',
       bullets: [
-        'Developed and refined the **Morticron waveform generator** on **Arduino Nano** and **STM32H753ZI**',
+        'Developed and refined the **Morticron waveform generator** firmware on a single PCB, where **STM32H753ZI** and **Arduino Nano** run as two independent functional units',
         'Owned **new-feature validation and implementation**, **firmware adaptation** and flashing',
         'Assembled and debugged the complete unit, from board bring-up to system-level testing',
       ],
@@ -134,7 +134,7 @@ export const en: Resume = {
       title: 'Morticron Waveform Generator — Firmware & Hardware',
       role: 'Hardware Engineer · Stucke Elektronik',
       bullets: [
-        'Built and extended the waveform-generator firmware on **STM32H753ZI**, with **Arduino Nano** prototyping',
+        'Built and extended the waveform-generator firmware on a shared PCB: **STM32H753ZI** and **Arduino Nano** serve distinct functions as independent units',
         '**Feature validation and implementation**, firmware adaptation, flashing, and full-unit assembly & debugging',
       ],
     },
@@ -175,7 +175,7 @@ export const en: Resume = {
       year: '2025',
     },
     {
-      title: 'Outstanding Student Scholarship, First Class (multiple times) & Special Award',
+      title: 'Outstanding Student Scholarship, First Class (multiple times)',
       detail: 'University of Shanghai for Science and Technology · Teaching assistant, German course',
     },
   ],
@@ -237,9 +237,9 @@ export const en: Resume = {
     },
   ],
   languages: [
-    { name: 'English', level: 'IELTS 7.5', detail: 'L 8.5 · R 7.5 · W 6.5 · S 6.5', score: 78 },
-    { name: 'German', level: 'Goethe B2 · TestDaF', detail: 'Listening 4 · Speaking 4 · Reading 4 · Writing 3', score: 66 },
-    { name: 'Mandarin Chinese', level: 'Native', detail: 'First language', score: 100 },
-    { name: 'Cantonese', level: 'Native', detail: 'First language · daily and working use', score: 100 },
+    { name: 'English', level: 'IELTS 7.5', detail: 'L 8.5 · R 7.5 · W 6.5 · S 6.5' },
+    { name: 'German', level: 'Goethe B2 · TestDaF', detail: 'Listening 4 · Speaking 4 · Reading 4 · Writing 3' },
+    { name: 'Mandarin Chinese', level: 'Native', detail: 'First language' },
+    { name: 'Cantonese', level: 'Native', detail: 'First language · daily and working use' },
   ],
 };

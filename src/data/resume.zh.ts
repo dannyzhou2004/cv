@@ -53,7 +53,7 @@ export const zh: Resume = {
     nameZh: '周悦杨',
     title: '电气工程及其自动化（工学学士）· 中德合作项目',
     tagline:
-      '以电气工程与自动化为基础，聚焦机器人：电力电子、运动控制与嵌入式系统的交叉实践。',
+      '以电气工程与自动化为基础，聚焦机器人，并向具身智能延伸：电力电子、运动控制与嵌入式系统的交叉实践。',
     location: '中国广东 · 上海 / 汉堡',
     phones: [],
     emails: ['Dannyzhou0218@gmail.com', '1532319620@qq.com'],
@@ -114,7 +114,7 @@ export const zh: Resume = {
       role: '硬件工程师',
       period: '2026.11 — 2027.03',
       bullets: [
-        '基于 **Arduino Nano** 与 **STM32H753ZI** 开发并完善 **Morticron 波形发生器**项目',
+        '在同一块 PCB 上开发并完善 **Morticron 波形发生器**固件，**STM32H753ZI** 与 **Arduino Nano** 作为两个独立功能单元各司其职',
         '负责**新功能验证与添加**、**固件适配**与烧录',
         '完成整机组装与调试，覆盖从板级 bring-up 到系统级测试',
       ],
@@ -134,7 +134,7 @@ export const zh: Resume = {
       title: 'Morticron 波形发生器 — 固件与硬件',
       role: '硬件工程师 · Stucke Elektronik',
       bullets: [
-        '在 **STM32H753ZI** 上开发并扩展波形发生器固件，并用 **Arduino Nano** 做原型验证',
+        '在**同一块 PCB** 上开发并扩展波形发生器固件，**STM32H753ZI** 与 **Arduino Nano** 分别承担独立功能',
         '**新功能验证与实现**、固件适配、烧录，以及整机组装与调试',
       ],
     },
@@ -175,7 +175,7 @@ export const zh: Resume = {
       year: '2025',
     },
     {
-      title: '优秀学生奖学金一等奖（多次）及特等奖',
+      title: '优秀学生奖学金一等奖（多次）',
       detail: '上海理工大学 · 德语课助教',
     },
   ],
@@ -231,9 +231,9 @@ export const zh: Resume = {
     },
   ],
   languages: [
-    { name: '英语', level: 'IELTS 7.5', detail: '听力 8.5 · 阅读 7.5 · 写作 6.5 · 口语 6.5', score: 78 },
-    { name: '德语', level: '歌德 B2 · TestDaF', detail: '听力 4 · 口语 4 · 阅读 4 · 写作 3', score: 66 },
-    { name: '普通话', level: '母语', detail: '中文母语', score: 100 },
-    { name: '粤语', level: '母语', detail: '母语 · 日常与工作交流', score: 100 },
+    { name: '英语', level: 'IELTS 7.5', detail: '听力 8.5 · 阅读 7.5 · 写作 6.5 · 口语 6.5' },
+    { name: '德语', level: '歌德 B2 · TestDaF', detail: '听力 4 · 口语 4 · 阅读 4 · 写作 3' },
+    { name: '普通话', level: '母语', detail: '中文母语' },
+    { name: '粤语', level: '母语', detail: '母语 · 日常与工作交流' },
   ],
 };
