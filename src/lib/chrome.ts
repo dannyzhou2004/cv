@@ -13,7 +13,6 @@ export interface ChromeText {
     programme: string;
     institution: string;
     period: string;
-    exchange: string;
     focus: string;
     interests: string;
   };
@@ -28,7 +27,6 @@ export const chrome: Record<Lang, ChromeText> = {
       programme: 'Programme',
       institution: 'Institution',
       period: 'Period',
-      exchange: 'Exchange',
       focus: 'Focus',
       interests: 'Interests',
     },
@@ -41,7 +39,6 @@ export const chrome: Record<Lang, ChromeText> = {
       programme: '学位项目',
       institution: '院校',
       period: '时间',
-      exchange: '交换学习',
       focus: '专业方向',
       interests: '爱好',
     },

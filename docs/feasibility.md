@@ -27,7 +27,7 @@
 | 中英双语 | `/en/`、`/zh/` 两套静态页，共用布局与组件；中文页主标题为「周悦杨」，英文页主标题为 ZHOU YUEYANG，各自带另一个名字作副标题 | 切换是真实链接；根路径按偏好跳转；`hreflang` / canonical 正确 |
 | Astro / Next | Astro 5.18 静态输出 | `astro build` 成功，4 个页面，2–3 秒 |
 | GitHub Pages | GitHub Actions 构建 + 官方 Pages action | 工作流已生成；`/` 与 `/cv/` 两种 base 均构建并逐条校验资源路径 |
-| 背景音乐 | 本地 `bgm.mp3`（裁掉开头 10 s）+ 进站自动播放（静音降级）+ 4 s 淡入 | 实测有声自动播放被拦时走静音降级，首次交互后从 0 淡入；暂停/恢复正常 |
+| 背景音乐 | 本地 `bgm.mp3`（裁掉开头 9 s）+ 进站自动播放（静音降级）+ 4 s 淡入 | 实测有声自动播放被拦时走静音降级，首次交互后从 0 淡入；暂停/恢复正常 |
 
 ---
 
@@ -98,7 +98,7 @@ push → GitHub Actions（npm ci → astro build → upload-pages-artifact）→
 | 进站默认播放 | 页面加载 0.9 s 后调用 `audio.play()`；`<audio preload="auto" loop>` |
 | 由小变大、不吓人 | 音量从 0 用 4 s 平方曲线升到 0.294（前两秒几乎听不到）；音量整体比最初下调 30% |
 | 可控制 | 页头四分音符按钮：暂停（0.9 s 淡出）/ 继续（重新从 0 淡入）；结尾 3 s 淡出、循环时重新 4 s 淡入 |
-| 不出现 B 站链接/播放器 | 已移除；只有本地音频文件，站点产物 3.88 MB |
+| 不出现 B 站链接/播放器 | 已移除；只有本地音频文件，站点产物 3.89 MB |
 
 ### 5.2 浏览器自动播放策略（唯一的硬限制）
 
@@ -114,7 +114,7 @@ push → GitHub Actions（npm ci → astro build → upload-pages-artifact）→
 
 ### 5.3 音频文件
 
-- `public/audio/bgm.mp3`：96 kb/s CBR、44.1 kHz 立体声、289.41 s（开头已裁掉 10 s）、3.31 MiB、-17.5 LUFS / 真峰值 -5.1 dBTP；
+- `public/audio/bgm.mp3`：96 kb/s CBR、44.1 kHz 立体声、290.41 s（开头已裁掉 9 s）、3.32 MiB、-17.5 LUFS / 真峰值 -4.5 dBTP；
 - 源为原视频音轨，文件内首 0.25 s 淡入、尾 2.5 s 淡出；播放器另外做 4 s 进站淡入与 3 s 结尾淡出；
 - 处理命令见 [docs/audio.md](./audio.md)。
 
@@ -137,8 +137,8 @@ push → GitHub Actions（npm ci → astro build → upload-pages-artifact）→
 | 客户端 JS | < 15 KB | **5.1 KB**（gzip ≈ 2 KB），无框架、无 polyfill |
 | 字体 | ≤ 300 KB | 按 `unicode-range` 只下载 latin 子集，约 200 KB；CJK 用系统字体，0 字节 |
 | 第三方请求 | 0 | 无 CDN、无分析、无 Google Fonts；音频是同源文件 |
-| 音频首屏 | 3.31 MB | `preload="auto"`：这是"进站就响"必须付出的代价 |
-| 整站产物 | — | **3.88 MB / 27 文件**（其中音频 3.31 MB；做 B 站嵌入方案时是 0.55 MB） |
+| 音频首屏 | 3.32 MB | `preload="auto"`：这是"进站就响"必须付出的代价 |
+| 整站产物 | — | **3.89 MB / 27 文件**（其中音频 3.32 MB；做 B 站嵌入方案时是 0.55 MB） |
 | 构建 | — | 2–3 秒，4 个页面 |
 
 ---

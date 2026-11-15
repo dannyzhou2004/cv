@@ -227,7 +227,7 @@ export const zh: Resume = {
   ],
   languages: [
     { name: '英语', level: 'IELTS 7.5', detail: '听力 8.5 · 阅读 7.5 · 写作 6.5 · 口语 6.5' },
-    { name: '德语', level: '歌德 B2 · TestDaF', detail: '听力 4 · 口语 4 · 阅读 4 · 写作 3' },
+    { name: '德语', level: '歌德 B2 · TestDaF' },
     { name: '普通话', level: '母语', detail: '中文母语' },
     { name: '粤语', level: '母语', detail: '母语 · 日常与工作交流' },
   ],

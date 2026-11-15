@@ -5,21 +5,21 @@
 | 项目 | 值 |
 |---|---|
 | 文件 | `cv-site/public/audio/bgm.mp3` |
-| 大小 | 3,473,452 B（3.31 MiB） |
+| 大小 | 3,485,364 B（3.32 MiB） |
 | 格式 | MP3 CBR 96 kb/s，44 100 Hz，2 声道 |
-| 时长 | 289.41 s（4:49）——原曲 299.37 s，**开头裁掉 10 s** |
-| 响度 | -17.5 LUFS，真峰值 -5.1 dBTP |
+| 时长 | 290.41 s（4:50）——原曲 299.37 s，**开头裁掉 9 s** |
+| 响度 | -17.5 LUFS，真峰值 -4.5 dBTP |
 | 文件内淡变 | 首 0.25 s 淡入、尾 2.5 s 淡出（播放器本身还有 4 s / 3 s 的淡变） |
 
 ## 来源与处理
 
 - 源：B 站视频（`cid=43403250064`，页面 `BV1ta4J6TET9`）的**音轨**；页面不出现任何 B 站链接或播放器。
-- 处理：提取音轨 → 跳过前 10 s → `afade` 0.25 s / 2.5 s → `loudnorm I=-18:TP=-1.5:LRA=11` → `libmp3lame 96k`。
+- 处理：提取音轨 → 跳过前 9 s → `afade` 0.25 s / 2.5 s → `loudnorm I=-18:TP=-1.5:LRA=11` → `libmp3lame 96k`。
 - 重新生成的命令（ffmpeg 在 PATH 中即可）：
 
 ```bash
-ffmpeg -y -i source.mp4 -vn -ss 10 \
-  -af "afade=t=in:st=0:d=0.25,afade=t=out:st=286.87:d=2.5,loudnorm=I=-18:TP=-1.5:LRA=11" \
+ffmpeg -y -i source.mp4 -vn -ss 9 \
+  -af "afade=t=in:st=0:d=0.25,afade=t=out:st=287.87:d=2.5,loudnorm=I=-18:TP=-1.5:LRA=11" \
   -ar 44100 -ac 2 -c:a libmp3lame -b:a 96k public/audio/bgm.mp3
 ```
 
@@ -39,7 +39,7 @@ ffmpeg -y -i source.mp4 -vn -ss 10 \
 
 ## 性能代价
 
-为了让音乐"进来就响"，`<audio preload="auto">` 会在首屏就下载这 3.31 MB；整站产物约 3.88 MB。如果以后更在意首屏速度，可以降到 64 kb/s（≈2.3 MB）、改成点击后才加载，或者接受"静音开场、点一下才播"。
+为了让音乐"进来就响"，`<audio preload="auto">` 会在首屏就下载这 3.32 MB；整站产物约 3.89 MB。如果以后更在意首屏速度，可以降到 64 kb/s（≈2.3 MB）、改成点击后才加载，或者接受"静音开场、点一下才播"。
 
 ## 版权
 

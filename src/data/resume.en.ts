@@ -233,7 +233,7 @@ export const en: Resume = {
   ],
   languages: [
     { name: 'English', level: 'IELTS 7.5', detail: 'L 8.5 · R 7.5 · W 6.5 · S 6.5' },
-    { name: 'German', level: 'Goethe B2 · TestDaF', detail: 'Listening 4 · Speaking 4 · Reading 4 · Writing 3' },
+    { name: 'German', level: 'Goethe B2 · TestDaF' },
     { name: 'Mandarin Chinese', level: 'Native', detail: 'First language' },
     { name: 'Cantonese', level: 'Native', detail: 'First language · daily and working use' },
   ],

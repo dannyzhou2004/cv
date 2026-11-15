@@ -12,7 +12,6 @@ const text = chrome[resume.lang];
 const { ui, education, skills, languages, person } = resume;
 
 const programme = education[0];
-const exchange = education[1];
 
 /** Profile = a compact dossier of facts that already exist in the data model. */
 const facts = [
@@ -22,10 +21,6 @@ const facts = [
     value: programme ? [programme.org, programme.orgSub].filter(Boolean).join(' · ') : undefined,
   },
   { key: text.facts.period, value: programme?.period },
-  {
-    key: text.facts.exchange,
-    value: exchange ? [exchange.org, exchange.period].filter(Boolean).join(' · ') : undefined,
-  },
   { key: text.facts.focus, value: skills.map((skill) => skill.group).join(' · ') },
   {
     key: ui.sections.languages,
