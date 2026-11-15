@@ -70,7 +70,7 @@ export const en: Resume = {
   education: [
     {
       org: 'University of Shanghai for Science and Technology',
-      orgSub: 'Sino-German International College',
+      orgSub: 'Shanghai-Hamburg College (SHC)',
       place: 'Shanghai, China',
       degree: 'B.Eng. Electrical Engineering and Automation — Sino-German Joint Program',
       period: 'Sep 2023 — Jul 2027 (expected)',
@@ -92,7 +92,7 @@ export const en: Resume = {
   experience: [
     {
       org: 'Stucke Elektronik GmbH',
-      orgSub: 'stuckeGROUP · Hamburg',
+      orgSub: 'stuckeGROUP · Hamburg · Praxissemester',
       place: 'Hamburg, Germany',
       role: 'Hardware Engineer',
       period: 'Nov 2026 — Mar 2027',
@@ -145,9 +145,14 @@ export const en: Resume = {
       year: '2025',
     },
     {
-      title: 'DAAD Scholarship',
-      detail: 'Summer Course (International) 2024 · Internship Abroad 2026–27',
-      year: '2024 · 2026',
+      title: 'DAAD Scholarship — Praxissemester (Industrial Internship)',
+      detail: 'DAAD funding for the mandatory 18-week practical semester in Hamburg · €992/month + travel allowance',
+      year: '2026–27',
+    },
+    {
+      title: 'DAAD Scholarship — Summer Course',
+      detail: 'International summer course in Germany',
+      year: '2024',
     },
     {
       title: 'Merit Award',

@@ -70,7 +70,7 @@ export const zh: Resume = {
   education: [
     {
       org: '上海理工大学（USST）',
-      orgSub: '中德国际学院',
+      orgSub: '中德国际学院（SHC）',
       place: '上海，中国',
       degree: '电气工程及其自动化 工学学士 · 中德合作项目',
       period: '2023.09 — 2027.07（预计）',
@@ -92,7 +92,7 @@ export const zh: Resume = {
   experience: [
     {
       org: 'Stucke Elektronik GmbH',
-      orgSub: 'stuckeGROUP · 汉堡',
+      orgSub: 'stuckeGROUP · 汉堡 · 必修实习学期',
       place: '汉堡，德国',
       role: '硬件工程师',
       period: '2026.11 — 2027.03',
@@ -145,9 +145,14 @@ export const zh: Resume = {
       year: '2025',
     },
     {
-      title: 'DAAD 奖学金',
-      detail: '2024 年暑期课程（国际）· 2026–27 年海外实习',
-      year: '2024 · 2026',
+      title: 'DAAD 奖学金 — 海外实习学期（Praxissemester）',
+      detail: 'DAAD 资助汉堡必修实习学期（18 周）· 992 €/月 + 差旅补贴',
+      year: '2026–27',
+    },
+    {
+      title: 'DAAD 奖学金 — 暑期课程',
+      detail: '德国国际暑期课程',
+      year: '2024',
     },
     {
       title: '优秀奖',

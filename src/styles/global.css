@@ -7,10 +7,10 @@
   /* palette */
   --paper: #f6f2ea;
   --surface: #fffdf8;
-  --ink: #15171c;
-  --muted: #5b5852;
-  --hair: #ded6c6;
-  --copper: #b4552a;
+  --ink: #101318;
+  --muted: #3f3c37;
+  --hair: #d8cfbd;
+  --copper: #9c451f;
   --verd: #2c5f5a;
   --copper-wash: #f1e2d5;
   --verd-wash: #dde8e3;
@@ -22,8 +22,8 @@
     'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans SC', monospace;
   --font-cjk: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans SC', sans-serif;
 
-  --step--1: clamp(0.78rem, 0.76rem + 0.08vw, 0.84rem);
-  --step-0: clamp(0.97rem, 0.94rem + 0.16vw, 1.06rem);
+  --step--1: clamp(0.84rem, 0.82rem + 0.1vw, 0.92rem);
+  --step-0: clamp(1.02rem, 0.99rem + 0.22vw, 1.15rem);
   --step-1: clamp(1.08rem, 1.01rem + 0.34vw, 1.3rem);
   --step-2: clamp(1.36rem, 1.18rem + 0.78vw, 1.82rem);
   --step-3: clamp(1.7rem, 1.4rem + 1.35vw, 2.6rem);
@@ -68,7 +68,7 @@ body {
   background-repeat: no-repeat;
   font-family: var(--font-body);
   font-size: var(--step-0);
-  line-height: 1.62;
+  line-height: 1.65;
   font-feature-settings: 'kern' 1, 'liga' 1;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
@@ -293,7 +293,7 @@ html[lang^='zh'] .hero-name[data-latin='true'] {
   display: block;
   padding-block: 0.4rem;
   font-family: var(--font-mono);
-  font-size: 0.71rem;
+  font-size: 0.74rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--muted);
@@ -416,7 +416,7 @@ html[lang^='zh'] .hero-name[data-latin='true'] {
 /* Only visible while the browser has blocked audible autoplay. */
 .music-hint {
   max-width: 9rem;
-  font-size: 0.62rem;
+  font-size: 0.68rem;
   letter-spacing: 0.04em;
   line-height: 1.3;
   color: var(--copper);
@@ -647,7 +647,7 @@ html[lang^='zh'] .stat-value {
   display: block;
   margin-top: 0.55rem;
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: 0.74rem;
   letter-spacing: 0.13em;
   text-transform: uppercase;
   color: var(--copper);
@@ -679,7 +679,7 @@ html[lang^='zh'] .stat-value {
 .sec-index {
   flex: none;
   font-family: var(--font-mono);
-  font-size: 0.74rem;
+  font-size: 0.78rem;
   letter-spacing: 0.1em;
   color: var(--copper);
 }
@@ -717,7 +717,7 @@ html[lang^='zh'] .stat-value {
 
 .fact-key {
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: 0.74rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--muted);
@@ -750,7 +750,7 @@ html[lang^='zh'] .stat-value {
 
 .entry-period {
   font-family: var(--font-mono);
-  font-size: 0.73rem;
+  font-size: 0.78rem;
   letter-spacing: 0.04em;
   line-height: 1.5;
   color: var(--verd);
@@ -758,7 +758,7 @@ html[lang^='zh'] .stat-value {
 
 .entry-place {
   font-family: var(--font-mono);
-  font-size: 0.71rem;
+  font-size: 0.76rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--muted);
@@ -855,7 +855,7 @@ html[lang^='zh'] .stat-value {
   border: 1px solid var(--copper);
   border-radius: 2px;
   font-family: var(--font-mono);
-  font-size: 0.67rem;
+  font-size: 0.72rem;
   letter-spacing: 0.11em;
   text-transform: uppercase;
   color: var(--copper);
@@ -880,7 +880,7 @@ html[lang^='zh'] .stat-value {
   gap: 0.25rem 1rem;
   margin-top: 0.55rem;
   font-family: var(--font-mono);
-  font-size: 0.71rem;
+  font-size: 0.76rem;
   letter-spacing: 0.05em;
   color: var(--muted);
 }
@@ -906,7 +906,7 @@ html[lang^='zh'] .stat-value {
 
 .award-year {
   font-family: var(--font-mono);
-  font-size: 0.73rem;
+  font-size: 0.78rem;
   letter-spacing: 0.04em;
   color: var(--verd);
   font-variant-numeric: tabular-nums;
@@ -950,7 +950,7 @@ html[lang^='zh'] .award-title {
 
 .tag-group-label {
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: 0.74rem;
   letter-spacing: 0.13em;
   text-transform: uppercase;
   color: var(--muted);
@@ -976,7 +976,7 @@ html[lang^='zh'] .award-title {
   padding: 0.2rem 0.48rem;
   border-color: color-mix(in srgb, var(--hair) 82%, transparent);
   background: transparent;
-  font-size: 0.8rem;
+  font-size: 0.86rem;
   color: var(--muted);
 }
 
@@ -1013,7 +1013,7 @@ html[lang^='zh'] .award-title {
 
 .lang-level {
   font-family: var(--font-mono);
-  font-size: 0.71rem;
+  font-size: 0.76rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--copper);
@@ -1045,7 +1045,7 @@ html[lang^='zh'] .award-title {
 
 .lang-detail {
   font-family: var(--font-mono);
-  font-size: 0.71rem;
+  font-size: 0.76rem;
   letter-spacing: 0.04em;
   line-height: 1.55;
   color: var(--muted);
@@ -1074,7 +1074,7 @@ html[lang^='zh'] .award-title {
   background: var(--ink);
   color: var(--paper);
   font-family: var(--font-mono);
-  font-size: 0.73rem;
+  font-size: 0.78rem;
   letter-spacing: 0.05em;
   line-height: 1.2;
   cursor: pointer;
