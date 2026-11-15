@@ -92,18 +92,17 @@ export const en: Resume = {
       org: 'Foshan No. 1 High School',
       orgSub: 'Foshan, Guangdong',
       place: 'Foshan, China',
-      degree: 'High school — senior year',
-      period: 'Sep 2022 — Jun 2023',
+      degree: 'Secondary education',
+      period: '2019 — 2023',
       bullets: [],
-    },
-    {
-      org: 'Kantonsschule Schaffhausen',
-      orgSub: 'AFS Intercultural Programs · Switzerland',
-      place: 'Schaffhausen, Switzerland',
-      degree: 'One-year high-school exchange',
-      period: 'Sep 2021 — Jun 2022',
-      bullets: [
-        '**Full academic year abroad** at a Swiss state grammar school, German-language immersion, hosted by an AFS host family',
+      subEntries: [
+        {
+          period: 'Sep 2021 — Jun 2022',
+          org: 'Kantonsschule Schaffhausen',
+          orgSub: 'AFS Intercultural Programs · Switzerland',
+          place: 'Schaffhausen, Switzerland',
+          text: '**One-year exchange** at a Swiss state grammar school — German-language immersion, living with an AFS host family',
+        },
       ],
     },
   ],

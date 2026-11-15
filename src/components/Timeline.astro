@@ -21,6 +21,7 @@ const rows = entries.map((entry) => ({
   period: entry.period,
   line: 'degree' in entry ? entry.degree : entry.role,
   bullets: entry.bullets,
+  subEntries: 'subEntries' in entry ? (entry.subEntries ?? []) : [],
 }));
 ---
 
@@ -46,6 +47,17 @@ const rows = entries.map((entry) => ({
                   ))}
                 </ul>
               )}
+              {row.subEntries.map((sub) => (
+                <div class="entry-subentry">
+                  <p class="entry-subentry-period">{sub.period}</p>
+                  <p class="entry-subentry-org">
+                    {sub.org}
+                    {sub.orgSub && <span class="entry-subentry-org-sub">{sub.orgSub}</span>}
+                  </p>
+                  {sub.place && <p class="entry-subentry-place">{sub.place}</p>}
+                  {sub.text && <p class="entry-subentry-text" set:html={rich(sub.text)} />}
+                </div>
+              ))}
             </div>
           </li>
         ))

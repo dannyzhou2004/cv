@@ -92,18 +92,17 @@ export const zh: Resume = {
       org: '佛山市第一中学',
       orgSub: 'Foshan No. 1 High School',
       place: '佛山，中国',
-      degree: '高中阶段',
-      period: '2022.09 — 2023.06',
+      degree: '中学阶段',
+      period: '2019 — 2023',
       bullets: [],
-    },
-    {
-      org: '瑞士沙夫豪森州立中学（Kantonsschule Schaffhausen）',
-      orgSub: 'AFS 国际文化交流项目',
-      place: '沙夫豪森，瑞士',
-      degree: '一年制高中交换',
-      period: '2021.09 — 2022.06',
-      bullets: [
-        '**在瑞士州立文理中学完成一整学年**，全德语环境，入住 AFS 寄宿家庭',
+      subEntries: [
+        {
+          period: '2021.09 — 2022.06',
+          org: '瑞士沙夫豪森州立中学',
+          orgSub: 'Kantonsschule Schaffhausen · AFS 国际文化交流项目',
+          place: '沙夫豪森，瑞士',
+          text: '**一整学年交换**：全德语环境就读州立文理中学，入住 AFS 寄宿家庭',
+        },
       ],
     },
   ],

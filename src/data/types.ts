@@ -48,6 +48,20 @@ export interface EducationEntry {
   degree: string;
   period: string;
   bullets: string[];
+  /**
+   * A nested episode inside this period (e.g. an exchange year that happened
+   * while enrolled at the school above). Rendered as an indented highlight.
+   */
+  subEntries?: EducationSubEntry[];
+}
+
+export interface EducationSubEntry {
+  period: string;
+  org: string;
+  orgSub?: string;
+  place?: string;
+  /** Rich text, `**bold**` supported. */
+  text?: string;
 }
 
 export interface ExperienceEntry {

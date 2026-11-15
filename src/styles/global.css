@@ -806,6 +806,53 @@ html[lang^='zh'] .stat-value {
   background: var(--copper);
 }
 
+/* Nested episode inside a period (e.g. the Swiss exchange year). */
+.entry-subentry {
+  margin-top: 1.1rem;
+  padding: 0.7rem 0 0.7rem 1.05rem;
+  border-left: 2px solid var(--copper);
+  background: linear-gradient(90deg, var(--copper-wash), rgba(241, 226, 213, 0) 78%);
+}
+
+.entry-subentry-period {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  color: var(--copper);
+}
+
+.entry-subentry-org {
+  margin-top: 0.2rem;
+  font-size: var(--step-0);
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.entry-subentry-org-sub {
+  display: block;
+  margin-top: 0.1rem;
+  font-size: var(--step--1);
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+.entry-subentry-place {
+  margin-top: 0.1rem;
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.entry-subentry-text {
+  margin-top: 0.4rem;
+  font-size: var(--step-0);
+  line-height: 1.6;
+  color: var(--muted);
+}
+
 /* --- projects ------------------------------------------------------------- */
 
 .projects {
