@@ -5,15 +5,15 @@
 
 :root {
   /* palette */
-  --paper: #f6f2ea;
-  --surface: #fffdf8;
-  --ink: #101318;
-  --muted: #3f3c37;
-  --hair: #d8cfbd;
-  --copper: #9c451f;
-  --verd: #2c5f5a;
-  --copper-wash: #f1e2d5;
-  --verd-wash: #dde8e3;
+  --paper: #f2f5f9;
+  --surface: #ffffff;
+  --ink: #0a1a2a;
+  --muted: #44566a;
+  --hair: #d5dde6;
+  --copper: #1b4f7d;
+  --verd: #4f6f8c;
+  --copper-wash: #e7eef7;
+  --verd-wash: #e9eef3;
 
   /* type */
   --font-display: 'Newsreader Variable', 'Newsreader', 'Songti SC', Georgia, 'Times New Roman', serif;
@@ -63,8 +63,8 @@ body {
   min-height: 100vh;
   color: var(--ink);
   background-color: var(--paper);
-  background-image: radial-gradient(80rem 42rem at 10% -10%, #fffdf8 0%, rgba(255, 253, 248, 0) 62%),
-    radial-gradient(52rem 26rem at 104% 102%, rgba(44, 95, 90, 0.08) 0%, rgba(44, 95, 90, 0) 62%);
+  background-image: radial-gradient(80rem 42rem at 10% -10%, #ffffff 0%, rgba(255, 255, 255, 0) 62%),
+    radial-gradient(52rem 26rem at 104% 102%, rgba(27, 79, 125, 0.09) 0%, rgba(27, 79, 125, 0) 62%);
   background-repeat: no-repeat;
   font-family: var(--font-body);
   font-size: var(--step-0);
@@ -1409,10 +1409,10 @@ html[lang^='zh'] .award-title {
   --radius-lg: 20px;
   --radius-md: 14px;
   --radius-pill: 999px;
-  --shadow-soft: 0 1px 2px rgba(16, 19, 24, 0.04), 0 26px 60px -42px rgba(16, 19, 24, 0.38);
-  --shadow-lift: 0 2px 6px rgba(16, 19, 24, 0.05), 0 38px 74px -44px rgba(16, 19, 24, 0.5);
-  --copper-bright: #dd8a55;
-  --on-dark: #f4f0e8;
+  --shadow-soft: 0 1px 2px rgba(10, 26, 42, 0.05), 0 26px 60px -42px rgba(10, 26, 42, 0.4);
+  --shadow-lift: 0 2px 6px rgba(10, 26, 42, 0.06), 0 38px 74px -44px rgba(10, 26, 42, 0.52);
+  --copper-bright: #8fc0ee;
+  --on-dark: #edf3fa;
 }
 
 /* --- floating glass header ------------------------------------------------ */
@@ -1499,8 +1499,8 @@ html[lang^='zh'] .award-title {
   pointer-events: none;
   filter: blur(24px);
   background:
-    radial-gradient(46% 56% at 74% 18%, rgba(156, 69, 31, 0.12), transparent 72%),
-    radial-gradient(38% 48% at 12% 0%, rgba(44, 95, 90, 0.1), transparent 74%);
+    radial-gradient(46% 56% at 74% 18%, rgba(27, 79, 125, 0.14), transparent 72%),
+    radial-gradient(38% 48% at 12% 0%, rgba(154, 167, 180, 0.22), transparent 74%);
 }
 
 .hero-kicker {
@@ -1655,7 +1655,7 @@ html[lang^='zh'] .award-title {
   border-radius: var(--radius-xl);
   color: var(--on-dark);
   background:
-    radial-gradient(120% 150% at 0% 0%, #1b2028 0%, #101318 52%, #0c0f13 100%);
+    radial-gradient(120% 150% at 0% 0%, #13314e 0%, #0a1d31 52%, #071322 100%);
   box-shadow: var(--shadow-lift);
 }
 
@@ -1674,7 +1674,7 @@ html[lang^='zh'] .award-title {
 #contact .btn {
   background: var(--on-dark);
   border-color: var(--on-dark);
-  color: #101318;
+  color: var(--ink);
 }
 
 #contact .btn--ghost {
@@ -1691,7 +1691,7 @@ html[lang^='zh'] .award-title {
   #contact .btn:hover {
     background: var(--copper-bright);
     border-color: var(--copper-bright);
-    color: #101318;
+    color: var(--ink);
   }
 
   #contact .btn--ghost:hover {

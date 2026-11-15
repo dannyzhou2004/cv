@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="ZY">
-  <rect width="64" height="64" rx="10" fill="#15171c" />
+  <rect width="64" height="64" rx="10" fill="#0a1a2a" />
   <text
     x="32"
     y="38.5"
@@ -8,7 +8,7 @@
     font-size="24"
     font-weight="600"
     letter-spacing="1.5"
-    fill="#f6f2ea"
+    fill="#e8eef5"
   >ZY</text>
-  <rect x="17" y="44" width="30" height="1.6" fill="#b4552a" />
+  <rect x="17" y="44" width="30" height="1.6" fill="#8fc0ee" />
 </svg>

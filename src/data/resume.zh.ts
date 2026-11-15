@@ -176,7 +176,7 @@ export const zh: Resume = {
     },
     {
       title: '优秀学生奖学金一等奖（多次）及特等奖',
-      detail: '上海理工大学 · 德语辅导教师',
+      detail: '上海理工大学 · 德语课助教',
     },
   ],
   skills: [

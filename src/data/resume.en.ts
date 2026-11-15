@@ -176,7 +176,7 @@ export const en: Resume = {
     },
     {
       title: 'Outstanding Student Scholarship, First Class (multiple times) & Special Award',
-      detail: 'University of Shanghai for Science and Technology · German Language Tutor',
+      detail: 'University of Shanghai for Science and Technology · Teaching assistant, German course',
     },
   ],
   skills: [
