@@ -23,13 +23,19 @@ const telHref = (phone: string): string => `tel:${phone.replace(/[^+\d]/g, '')}`
           {
             person.emails.map((email) => (
               <li>
-                <a class="btn" href={`mailto:${email}`}>
+                <button
+                  class="btn"
+                  type="button"
+                  data-copy={email}
+                  data-copied={ui.labels.copied}
+                  aria-label={`${ui.labels.copyEmail} — ${email}`}
+                >
                   <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
                     <rect x="3" y="5" width="18" height="14" rx="1.5" />
                     <path d="m3.4 7 8.6 5.7L20.6 7" />
                   </svg>
                   <span>{email}</span>
-                </a>
+                </button>
               </li>
             ))
           }
@@ -55,8 +61,6 @@ const telHref = (phone: string): string => `tel:${phone.replace(/[^+\d]/g, '')}`
             ))
           }
         </ul>
-
-        <p class="copy-status" role="status" aria-live="polite" data-copy-status></p>
       </div>
 
       <div class="contact-utility">

@@ -23,7 +23,7 @@ function normalizeBase(raw) {
 }
 
 export default defineConfig({
-  site: 'https://dannyzhou2004.github.io',
+  site: process.env.SITE_URL || 'https://dannyzhou2004.github.io',
   base: normalizeBase(process.env.BASE_PATH),
   output: 'static',
   trailingSlash: 'always',

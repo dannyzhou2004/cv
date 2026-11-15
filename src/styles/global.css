@@ -582,8 +582,14 @@ html[lang^='zh'] .hero-name[data-latin='true'] {
   stroke: var(--copper);
 }
 
+button.chip {
+  font-family: inherit;
+  cursor: pointer;
+}
+
 @media (hover: hover) {
-  a.chip:hover {
+  a.chip:hover,
+  button.chip:hover {
     border-color: var(--copper);
     color: var(--copper);
     transform: translateY(-1px);
@@ -1168,6 +1174,31 @@ html[lang^='zh'] .award-title {
 
 .copy-status.is-visible {
   opacity: 1;
+}
+
+/* Global feedback toast: used by every e-mail chip and the contact buttons. */
+.copy-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 1.5rem;
+  z-index: 80;
+  margin: 0;
+  padding: 0.55rem 0.95rem;
+  border-radius: var(--radius-pill, 999px);
+  background: var(--ink);
+  color: var(--surface);
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, 0.5rem);
+  transition: opacity 0.22s var(--ease), transform 0.22s var(--ease);
+}
+
+.copy-toast.is-visible {
+  opacity: 0.95;
+  transform: translate(-50%, 0);
 }
 
 .site-footer {
@@ -1831,6 +1862,10 @@ html[lang^='zh'] .award-title {
 
 @media print {
   .scroll-progress {
+    display: none !important;
+  }
+
+  .copy-toast {
     display: none !important;
   }
 
