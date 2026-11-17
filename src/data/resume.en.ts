@@ -102,7 +102,7 @@ export const en: Resume = {
           org: 'Kantonsschule Schaffhausen',
           orgSub: 'AFS Intercultural Programs · Switzerland',
           place: 'Schaffhausen, Switzerland',
-          text: '**One-year exchange** at a Swiss state grammar school — German-language immersion, living with an AFS host family',
+          text: 'One-year exchange at a public Swiss Gymnasium (Kantonsschule Schaffhausen) — German-language immersion, living with an AFS host family.',
         },
       ],
     },

@@ -102,7 +102,7 @@ export const zh: Resume = {
           org: '瑞士沙夫豪森州立中学',
           orgSub: 'Kantonsschule Schaffhausen · AFS 国际文化交流项目',
           place: '沙夫豪森，瑞士',
-          text: '**一整学年交换**：全德语环境就读州立文理中学，入住 AFS 寄宿家庭',
+          text: '一年交换：就读于瑞士公立文理中学（Kantonsschule Schaffhausen），全程德语浸润，入住 AFS 寄宿家庭。',
         },
       ],
     },
